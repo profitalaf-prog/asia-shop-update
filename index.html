@@ -38,7 +38,6 @@
     .nav-links { display: flex; align-items: center; gap: 2rem; }
     .nav-links button { background: none; border: none; font-size: 0.95rem; font-weight: 500; cursor: pointer; color: var(--foreground); transition: color 0.2s; }
     .nav-links button:hover { color: var(--primary); }
-    /* Sprach-Button immer sichtbar */
     .lang-btn {
       border: 1px solid rgba(157,86,46,0.25);
       padding: 0.3rem 0.75rem;
@@ -49,7 +48,6 @@
       cursor: pointer;
     }
     .lang-btn:hover { background: var(--primary); color: var(--primary-fg); }
-    /* Mobile: nur Sprach-Button anzeigen, restliche Nav-Links ausblenden */
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .nav-inner { justify-content: space-between; }
@@ -59,20 +57,23 @@
     .hero-bg::before { content: ''; position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=1600&auto=format&fit=crop&q=70') center/cover; opacity: 0.3; mix-blend-mode: overlay; }
     .hero-bg::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, var(--background), transparent); }
     .hero-content { position: relative; z-index: 2; text-align: center; max-width: 56rem; padding: 0 1.5rem; margin-top: 4rem; }
-    .hero-badge { display: inline-block; background: rgba(200,140,60,0.12); border: 1px solid rgba(200,140,60,0.3); padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.75rem; text-transform: uppercase; color: hsl(40,33%,90%); margin-bottom: 1.5rem; }
-    .hero-title { font-size: clamp(2.5rem, 8vw, 5.5rem); color: hsl(40,33%,98%); line-height: 1.1; margin-bottom: 1rem; }
+    .hero-badge { display: inline-block; background: rgba(200,140,60,0.12); border: 1px solid rgba(200,140,60,0.3); padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.75rem; text-transform: uppercase; color: hsl(40,33%,90%); margin-bottom: 1rem; }
+    .hero-title { font-size: clamp(2.5rem, 8vw, 5.5rem); color: hsl(40,33%,98%); line-height: 1.1; margin-bottom: 0.75rem; }
     .hero-sub { font-size: clamp(1rem, 2.5vw, 1.35rem); color: rgba(250,248,244,0.85); max-width: 40rem; margin: 0 auto; }
     .scroll-arrow { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); background: none; border: none; color: rgba(250,248,244,0.6); font-size: 2rem; cursor: pointer; animation: bounce 2s infinite; }
     @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
-    section { padding: 5rem 0; }
-    .section-header { text-align: center; max-width: 48rem; margin: 0 auto 3rem; }
-    .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--primary); margin-bottom: 1rem; }
-    .divider { width: 5rem; height: 3px; background: var(--secondary); margin: 0 auto 2rem; }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    /* KOMPAKTE SEKTIONEN: padding 2rem statt 5rem */
+    section { padding: 2rem 0; }
+    .section-header { text-align: center; max-width: 48rem; margin: 0 auto 1.5rem; }
+    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.5rem); color: var(--primary); margin-bottom: 0.5rem; }
+    .divider { width: 4rem; height: 2px; background: var(--secondary); margin: 0 auto 1.2rem; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
     .about-img { aspect-ratio: 4/5; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); }
     .about-img img { width: 100%; height: 100%; object-fit: cover; }
-    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
-    .feature { border-left: 2px solid var(--secondary); padding-left: 1rem; }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 1.5rem; }
+    .feature { border-left: 2px solid var(--secondary); padding-left: 0.8rem; }
+    .feature h3 { font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .feature p { font-size: 0.8rem; color: var(--muted-fg); }
     
     /* Horizontale Scroll-Container (Mobile first) */
     .scroll-x {
@@ -93,7 +94,6 @@
       scroll-snap-align: start;
       width: 280px;
     }
-    /* Desktop: Grid-Ansicht */
     @media (min-width: 1024px) {
       .scroll-x {
         display: grid;
@@ -108,11 +108,7 @@
       .gallery-scroll { grid-template-columns: repeat(4, 1fr); display: grid; overflow-x: visible; gap: 1rem; }
       .gallery-scroll > * { width: auto; }
     }
-    /* Galerie speziell (Desktop-Raster) */
-    .gallery-scroll {
-      display: flex;
-      gap: 1rem;
-    }
+    .gallery-scroll { display: flex; gap: 1rem; }
     @media (min-width: 1024px) {
       .gallery-scroll {
         display: grid;
@@ -130,46 +126,49 @@
     .gallery-item:hover .gallery-overlay { opacity: 1; }
     .product-card, .recipe-card, .review-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: all 0.3s; }
     .product-card:hover, .recipe-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .product-img { height: 180px; overflow: hidden; }
+    .product-img { height: 160px; overflow: hidden; }
     .product-img img, .recipe-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .product-body, .recipe-body { padding: 1rem; }
-    .product-body h3, .recipe-body h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-    .product-body p, .recipe-body p { font-size: 0.8rem; color: var(--muted-fg); margin-bottom: 0.5rem; }
+    .product-body, .recipe-body { padding: 0.8rem; }
+    .product-body h3, .recipe-body h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+    .product-body p, .recipe-body p { font-size: 0.75rem; color: var(--muted-fg); margin-bottom: 0.3rem; }
     .product-body ul { list-style: none; }
     .product-body li { font-size: 0.7rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.2rem; }
     .product-body li::before { content: ''; width: 6px; height: 6px; background: var(--secondary); border-radius: 50%; }
-    .recipe-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--secondary); display: block; margin-bottom: 0.2rem; }
-    .review-card { padding: 1.5rem; position: relative; }
-    .review-quote { font-family: var(--font-serif); font-size: 3rem; color: rgba(200,140,60,0.15); position: absolute; top: 0.2rem; left: 1rem; }
-    .stars { color: var(--secondary); margin-bottom: 0.8rem; font-size: 0.9rem; }
-    .review-text { font-style: italic; color: var(--muted-fg); margin-bottom: 1rem; font-size: 0.85rem; line-height: 1.5; }
-    .review-name { font-weight: 700; color: var(--primary); font-size: 0.9rem; }
+    .recipe-label { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; color: var(--secondary); display: block; margin-bottom: 0.1rem; }
+    .review-card { padding: 1.2rem; position: relative; }
+    .review-quote { font-family: var(--font-serif); font-size: 2.5rem; color: rgba(200,140,60,0.15); position: absolute; top: 0rem; left: 0.8rem; }
+    .stars { color: var(--secondary); margin-bottom: 0.5rem; font-size: 0.8rem; }
+    .review-text { font-style: italic; color: var(--muted-fg); margin-bottom: 0.8rem; font-size: 0.8rem; line-height: 1.4; }
+    .review-name { font-weight: 700; color: var(--primary); font-size: 0.85rem; }
     .faq-inner { max-width: 56rem; margin: 0 auto; }
     .faq-item { border-bottom: 1px solid var(--border); }
-    .faq-q { width: 100%; background: none; border: none; text-align: left; padding: 1rem 0; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; color: var(--primary); }
+    .faq-q { width: 100%; background: none; border: none; text-align: left; padding: 0.8rem 0; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; color: var(--primary); font-size: 0.95rem; }
     .faq-chevron { transition: transform 0.3s; }
     .faq-item.open .faq-chevron { transform: rotate(180deg); }
-    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s; color: var(--muted-fg); font-size: 0.9rem; }
-    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 1rem; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-    .contact-block { margin-bottom: 2rem; }
-    .contact-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
-    .contact-head svg { width: 1.4rem; height: 1.4rem; color: var(--secondary); }
-    .social-links { display: flex; gap: 0.8rem; padding-left: 2.1rem; }
-    .social-links a { width: 2.3rem; height: 2.3rem; background: var(--primary); color: var(--primary-fg); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: bold; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s; color: var(--muted-fg); font-size: 0.85rem; line-height: 1.4; }
+    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 0.8rem; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .contact-block { margin-bottom: 1.5rem; }
+    .contact-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+    .contact-head svg { width: 1.2rem; height: 1.2rem; color: var(--secondary); }
+    .contact-body { padding-left: 1.8rem; color: var(--muted-fg); font-size: 0.85rem; }
+    .social-links { display: flex; gap: 0.6rem; padding-left: 1.8rem; }
+    .social-links a { width: 2rem; height: 2rem; background: var(--primary); color: var(--primary-fg); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
     .map-wrap { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; border: 1px solid var(--border); }
-    .map-header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; padding: 1rem; background: var(--primary); color: var(--primary-fg); }
+    .map-header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; padding: 0.8rem 1rem; background: var(--primary); color: var(--primary-fg); }
     .map-dot { width: 8px; height: 8px; background: var(--secondary); border-radius: 50%; }
-    .map-iframe-wrap iframe { width: 100%; height: 320px; border: 0; display: block; }
-    .map-footer { padding: 0.8rem 1rem; background: var(--card); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; border-top: 1px solid var(--border); font-size: 0.8rem; }
-    .map-link { background: var(--primary); color: var(--primary-fg); padding: 0.3rem 0.8rem; border-radius: 2rem; text-decoration: none; font-weight: 500; }
-    footer { background: var(--primary); color: var(--primary-fg); padding: 2rem 0; }
+    .map-title { font-weight: 700; font-family: var(--font-serif); font-size: 1rem; }
+    .map-address { font-size: 0.7rem; opacity: 0.8; margin-left: auto; }
+    .map-iframe-wrap iframe { width: 100%; height: 280px; border: 0; display: block; }
+    .map-footer { padding: 0.7rem 1rem; background: var(--card); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; border-top: 1px solid var(--border); font-size: 0.75rem; }
+    .map-link { background: var(--primary); color: var(--primary-fg); padding: 0.25rem 0.7rem; border-radius: 2rem; text-decoration: none; font-weight: 500; font-size: 0.75rem; }
+    footer { background: var(--primary); color: var(--primary-fg); padding: 1.5rem 0; }
     .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .footer-links a { color: rgba(250,248,244,0.8); text-decoration: none; margin-left: 1.5rem; font-size: 0.85rem; }
-    .fade-up, .fade-left, .fade-right { opacity: 0; transition: opacity 0.7s ease, transform 0.7s ease; }
-    .fade-up { transform: translateY(30px); }
-    .fade-left { transform: translateX(-30px); }
-    .fade-right { transform: translateX(30px); }
+    .footer-links a { color: rgba(250,248,244,0.8); text-decoration: none; margin-left: 1.5rem; font-size: 0.8rem; }
+    .fade-up, .fade-left, .fade-right { opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-up { transform: translateY(20px); }
+    .fade-left { transform: translateX(-20px); }
+    .fade-right { transform: translateX(20px); }
     .visible { opacity: 1 !important; transform: none !important; }
     @media (max-width: 768px) {
       .about-grid, .contact-grid { grid-template-columns: 1fr; }
@@ -179,6 +178,8 @@
       .map-header { flex-direction: column; align-items: flex-start; }
       .map-footer { flex-direction: column; align-items: flex-start; }
       .scroll-x > * { width: 260px; }
+      section { padding: 1.5rem 0; }
+      .section-header { margin-bottom: 1rem; }
     }
   </style>
 </head>
@@ -198,7 +199,7 @@
 </nav>
 <main>
   <section id="hero"><div class="hero-bg"></div><div class="hero-content"><span class="hero-badge" data-key="hero.notice">Nur zur Information - kein Online-Verkauf</span><h1 class="hero-title" data-key="hero.title">Die Essenz Asiens in Saarbrücken</h1><p class="hero-sub" data-key="hero.subtitle">Treten Sie ein in eine Welt voller Aromen. Authentische Gewürze, frische Zutaten und asiatische Spezialitäten.</p></div><button class="scroll-arrow" onclick="scrollToSection('about')">↓</button></section>
-  <section id="about"><div class="container"><div class="about-grid"><div class="about-img fade-left"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&auto=format&fit=crop&q=80" alt="Marktinneres"></div><div class="fade-right"><h2 data-key="about.title">Unsere Geschichte</h2><div class="divider divider-left"></div><p data-key="about.desc" style="margin-bottom:1.5rem;">Wir sind seit 2008 Ihre erste Adresse für authentische asiatische Lebensmittel in Saarbrücken. Als familiengeführter Markt legen wir Wert auf Qualität, Beratung und eine persönliche Atmosphäre.</p><div class="features" id="featuresContainer"></div></div></div></div></section>
+  <section id="about"><div class="container"><div class="about-grid"><div class="about-img fade-left"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&auto=format&fit=crop&q=80" alt="Marktinneres"></div><div class="fade-right"><h2 data-key="about.title">Unsere Geschichte</h2><div class="divider divider-left"></div><p data-key="about.desc" style="margin-bottom:1rem;">Wir sind seit 2008 Ihre erste Adresse für authentische asiatische Lebensmittel in Saarbrücken. Als familiengeführter Markt legen wir Wert auf Qualität, Beratung und eine persönliche Atmosphäre.</p><div class="features" id="featuresContainer"></div></div></div></div></section>
   <section id="gallery"><div class="container"><div class="section-header"><h2 class="section-title" data-key="gallery.title">Einblick in unseren Markt</h2><div class="divider"></div></div><div class="gallery-scroll scroll-x" id="galleryGrid"></div></div></section>
   <section id="products"><div class="container"><div class="section-header"><h2 class="section-title" data-key="products.title">Produkte & Spezialitäten</h2><div class="divider"></div></div><div class="scroll-x" id="productsGrid"></div></div></section>
   <section id="recipes"><div class="container"><div class="section-header"><h2 class="section-title" data-key="recipes.title">Unsere Lieblingsrezepte</h2><div class="divider"></div></div><div class="scroll-x recipes-scroll" id="recipesGrid"></div></div></section>
