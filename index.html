@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=yes">
   <title>Asia Market Saarbrücken – Authentische asiatische Lebensmittel</title>
   <meta name="description" content="Ihre erste Adresse für authentische asiatische Lebensmittel in Saarbrücken. Frische Gewürze, Spezialitäten & Rezeptideen.">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Asia Market Saarbrücken">
-  <meta property="og:description" content="Entdecken Sie die Vielfalt Asiens – Qualität, Tradition & Leidenschaft.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,100..1000;1,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
@@ -24,7 +21,6 @@
       --secondary-fg: hsl(40, 33%, 98%);
       --muted: hsl(40, 19%, 90%);
       --muted-fg: hsl(200, 8%, 40%);
-      --accent: hsl(3, 45%, 38%);
       --font-sans: 'DM Sans', sans-serif;
       --font-serif: 'Playfair Display', serif;
       --radius: 0.5rem;
@@ -32,522 +28,232 @@
       --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.08);
     }
     body { font-family: var(--font-sans); background: var(--background); color: var(--foreground); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    h1, h2, h3, h4, h5, h6 { font-family: var(--font-serif); font-weight: 700; }
+    h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 700; }
     .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: all 0.3s ease; padding: 1.5rem 0; }
     nav.scrolled { background: rgba(250, 248, 244, 0.92); backdrop-filter: blur(12px); box-shadow: 0 2px 12px rgba(0,0,0,0.05); padding: 1rem 0; }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; }
-    .logo { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--primary); cursor: pointer; line-height: 1.2; }
+    .logo { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--primary); cursor: pointer; }
     .logo span { color: var(--secondary); font-size: 0.8rem; display: block; }
     .nav-links { display: flex; align-items: center; gap: 2rem; }
     .nav-links button { background: none; border: none; font-size: 0.95rem; font-weight: 500; cursor: pointer; color: var(--foreground); transition: color 0.2s; }
     .nav-links button:hover { color: var(--primary); }
-    .lang-btn { border: 1px solid rgba(157,86,46,0.25); padding: 0.3rem 0.75rem; border-radius: var(--radius); font-family: monospace; font-size: 0.75rem !important; background: transparent; }
+    .lang-btn { border: 1px solid rgba(157,86,46,0.25); padding: 0.3rem 0.75rem; border-radius: var(--radius); font-family: monospace; font-size: 0.75rem !important; }
     .lang-btn:hover { background: var(--primary); color: var(--primary-fg); }
     #hero { height: 100dvh; display: flex; align-items: center; justify-content: center; background: var(--primary); position: relative; overflow: hidden; }
     .hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, hsl(157,40%,10%) 0%, hsl(157,20%,20%) 50%, hsl(33,40%,15%) 100%); }
     .hero-bg::before { content: ''; position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=1600&auto=format&fit=crop&q=70') center/cover; opacity: 0.3; mix-blend-mode: overlay; }
     .hero-bg::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, var(--background), transparent); }
     .hero-content { position: relative; z-index: 2; text-align: center; max-width: 56rem; padding: 0 1.5rem; margin-top: 4rem; }
-    .hero-badge { display: inline-block; background: rgba(200,140,60,0.12); border: 1px solid rgba(200,140,60,0.3); padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: hsl(40,33%,90%); margin-bottom: 1.5rem; }
-    .hero-title { font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 700; color: hsl(40,33%,98%); line-height: 1.1; margin-bottom: 1rem; }
-    .hero-sub { font-size: clamp(1rem, 2.5vw, 1.35rem); color: rgba(250,248,244,0.85); max-width: 40rem; margin-left: auto; margin-right: auto; }
-    .scroll-arrow { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); background: none; border: none; color: rgba(250,248,244,0.6); font-size: 2rem; cursor: pointer; animation: bounce 2s infinite; transition: color 0.2s; }
-    .scroll-arrow:hover { color: var(--secondary); }
+    .hero-badge { display: inline-block; background: rgba(200,140,60,0.12); border: 1px solid rgba(200,140,60,0.3); padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.75rem; text-transform: uppercase; color: hsl(40,33%,90%); margin-bottom: 1.5rem; }
+    .hero-title { font-size: clamp(2.5rem, 8vw, 5.5rem); color: hsl(40,33%,98%); line-height: 1.1; margin-bottom: 1rem; }
+    .hero-sub { font-size: clamp(1rem, 2.5vw, 1.35rem); color: rgba(250,248,244,0.85); max-width: 40rem; margin: 0 auto; }
+    .scroll-arrow { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); background: none; border: none; color: rgba(250,248,244,0.6); font-size: 2rem; cursor: pointer; animation: bounce 2s infinite; }
     @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
     section { padding: 5rem 0; }
     .section-header { text-align: center; max-width: 48rem; margin: 0 auto 3rem; }
     .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--primary); margin-bottom: 1rem; }
     .divider { width: 5rem; height: 3px; background: var(--secondary); margin: 0 auto 2rem; }
-    .divider-left { margin: 0 0 1.5rem 0; }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
     .about-img { aspect-ratio: 4/5; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); }
     .about-img img { width: 100%; height: 100%; object-fit: cover; }
     .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
     .feature { border-left: 2px solid var(--secondary); padding-left: 1rem; }
-    .feature h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; }
-    .feature p { font-size: 0.85rem; color: var(--muted-fg); }
-    .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-    .product-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: all 0.3s; }
-    .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: rgba(157,86,46,0.3); }
-    .product-img { height: 200px; overflow: hidden; }
-    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .product-card:hover .product-img img { transform: scale(1.05); }
-    .product-body { padding: 1.2rem; }
-    .product-body h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-    .product-body p { font-size: 0.8rem; color: var(--muted-fg); margin-bottom: 0.75rem; }
-    .product-body ul { list-style: none; }
-    .product-body li { font-size: 0.75rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem; }
-    .product-body li::before { content: ''; width: 6px; height: 6px; background: var(--secondary); border-radius: 50%; }
-    .recipes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    .recipe-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: all 0.3s; }
-    .recipe-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-    .recipe-img { height: 220px; overflow: hidden; }
-    .recipe-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .recipe-card:hover .recipe-img img { transform: scale(1.05); }
-    .recipe-body { padding: 1.5rem; }
-    .recipe-body h3 { font-size: 1.4rem; margin-bottom: 0.75rem; }
-    .recipe-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--secondary); display: block; margin-bottom: 0.25rem; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 1rem; }
-    .gallery-item { overflow: hidden; border-radius: var(--radius); position: relative; cursor: pointer; }
-    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-    .gallery-item:nth-child(4) { grid-column: span 2; }
-    .gallery-item:nth-child(7) { grid-row: span 2; }
+    
+    /* Horizontale Scroll-Container (Mobile first) */
+    .scroll-x {
+      overflow-x: auto;
+      overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      gap: 1rem;
+      padding-bottom: 0.5rem;
+      scrollbar-width: thin;
+    }
+    .scroll-x::-webkit-scrollbar { height: 6px; }
+    .scroll-x::-webkit-scrollbar-track { background: var(--border); border-radius: 10px; }
+    .scroll-x::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }
+    .scroll-x > * {
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      width: 280px;
+    }
+    /* Desktop: Grid-Ansicht */
+    @media (min-width: 1024px) {
+      .scroll-x {
+        display: grid;
+        overflow-x: visible;
+        scroll-snap-type: none;
+        gap: 1.5rem;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .scroll-x > * { width: auto; }
+      .recipes-scroll { grid-template-columns: repeat(3, 1fr); }
+      .reviews-scroll { grid-template-columns: repeat(3, 1fr); }
+      .gallery-scroll { grid-template-columns: repeat(4, 1fr); display: grid; overflow-x: visible; gap: 1rem; }
+      .gallery-scroll > * { width: auto; }
+    }
+    /* Galerie speziell (Desktop-Raster) */
+    .gallery-scroll {
+      display: flex;
+      gap: 1rem;
+    }
+    @media (min-width: 1024px) {
+      .gallery-scroll {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 200px;
+        gap: 1rem;
+      }
+      .gallery-scroll .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+      .gallery-scroll .gallery-item:nth-child(4) { grid-column: span 2; }
+      .gallery-scroll .gallery-item:nth-child(7) { grid-row: span 2; }
+    }
+    .gallery-item { position: relative; overflow: hidden; border-radius: var(--radius); cursor: pointer; height: 200px; flex-shrink: 0; width: 280px; }
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .gallery-item:hover img { transform: scale(1.08); }
     .gallery-overlay { position: absolute; inset: 0; background: rgba(40,84,60,0.4); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center; color: white; }
     .gallery-item:hover .gallery-overlay { opacity: 1; }
-    .gallery-overlay span { border: 1px solid rgba(255,255,255,0.5); padding: 0.4rem 1rem; border-radius: 999px; backdrop-filter: blur(4px); font-size: 0.8rem; }
-    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    .review-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; position: relative; box-shadow: var(--shadow-sm); }
-    .review-quote { font-family: var(--font-serif); font-size: 4rem; color: rgba(200,140,60,0.15); position: absolute; top: 0.5rem; left: 1rem; line-height: 1; }
-    .stars { color: var(--secondary); margin-bottom: 1.2rem; font-size: 1rem; }
-    .review-text { font-style: italic; color: var(--muted-fg); margin-bottom: 1.2rem; line-height: 1.6; }
-    .review-name { font-weight: 700; color: var(--primary); }
+    .product-card, .recipe-card, .review-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: all 0.3s; }
+    .product-card:hover, .recipe-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .product-img { height: 180px; overflow: hidden; }
+    .product-img img, .recipe-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .product-body, .recipe-body { padding: 1rem; }
+    .product-body h3, .recipe-body h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .product-body p, .recipe-body p { font-size: 0.8rem; color: var(--muted-fg); margin-bottom: 0.5rem; }
+    .product-body ul { list-style: none; }
+    .product-body li { font-size: 0.7rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.2rem; }
+    .product-body li::before { content: ''; width: 6px; height: 6px; background: var(--secondary); border-radius: 50%; }
+    .recipe-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--secondary); display: block; margin-bottom: 0.2rem; }
+    .review-card { padding: 1.5rem; position: relative; }
+    .review-quote { font-family: var(--font-serif); font-size: 3rem; color: rgba(200,140,60,0.15); position: absolute; top: 0.2rem; left: 1rem; }
+    .stars { color: var(--secondary); margin-bottom: 0.8rem; font-size: 0.9rem; }
+    .review-text { font-style: italic; color: var(--muted-fg); margin-bottom: 1rem; font-size: 0.85rem; line-height: 1.5; }
+    .review-name { font-weight: 700; color: var(--primary); font-size: 0.9rem; }
     .faq-inner { max-width: 56rem; margin: 0 auto; }
     .faq-item { border-bottom: 1px solid var(--border); }
-    .faq-q { width: 100%; background: none; border: none; text-align: left; padding: 1.2rem 0; font-weight: 700; font-size: 1rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--primary); transition: color 0.2s; }
-    .faq-q:hover { color: var(--secondary); }
-    .faq-chevron { transition: transform 0.3s; font-size: 1.2rem; }
+    .faq-q { width: 100%; background: none; border: none; text-align: left; padding: 1rem 0; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; color: var(--primary); }
+    .faq-chevron { transition: transform 0.3s; }
     .faq-item.open .faq-chevron { transform: rotate(180deg); }
-    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.3s; color: var(--muted-fg); font-size: 0.9rem; line-height: 1.6; }
-    .faq-item.open .faq-a { max-height: 220px; padding-bottom: 1.2rem; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s; color: var(--muted-fg); font-size: 0.9rem; }
+    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 1rem; }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
     .contact-block { margin-bottom: 2rem; }
     .contact-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
     .contact-head svg { width: 1.4rem; height: 1.4rem; color: var(--secondary); }
-    .contact-body { padding-left: 2.1rem; color: var(--muted-fg); }
     .social-links { display: flex; gap: 0.8rem; padding-left: 2.1rem; }
-    .social-links a { width: 2.3rem; height: 2.3rem; background: var(--primary); color: var(--primary-fg); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: bold; transition: background 0.2s; }
-    .social-links a:hover { background: var(--secondary); }
-    
-    /* Karten-Komponente ohne Bild */
-    .map-wrap {
-      background: var(--card);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-md);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .map-wrap:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12); }
-    .map-header {
-      display: flex;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 0.5rem 1rem;
-      padding: 1rem 1.2rem;
-      background: var(--primary);
-      color: var(--primary-fg);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .map-dot { width: 8px; height: 8px; background: var(--secondary); border-radius: 50%; display: inline-block; }
-    .map-title { font-weight: 700; font-family: var(--font-serif); font-size: 1.1rem; letter-spacing: 0.3px; }
-    .map-address { font-size: 0.8rem; opacity: 0.8; margin-left: auto; }
-    .map-iframe-wrap iframe {
-      width: 100%;
-      height: 320px;
-      border: 0;
-      display: block;
-    }
-    .map-footer {
-      padding: 0.9rem 1.2rem;
-      background: var(--card);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.85rem;
-    }
-    .map-footer-text { color: var(--muted-fg); display: flex; align-items: center; gap: 0.4rem; }
-    .map-footer-text::before { content: "📍"; font-size: 0.9rem; }
-    .map-link {
-      background: var(--primary);
-      color: var(--primary-fg);
-      padding: 0.3rem 0.9rem;
-      border-radius: 2rem;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: 0.8rem;
-    }
-    .map-link:hover { background: var(--secondary); color: var(--primary); }
-    @media (max-width: 768px) {
-      .map-header { flex-direction: column; align-items: flex-start; }
-      .map-address { margin-left: 0; }
-      .map-footer { flex-direction: column; align-items: flex-start; }
-    }
-
-    footer { background: var(--primary); color: var(--primary-fg); padding: 2.5rem 0; border-top: 1px solid rgba(250,248,244,0.1); }
+    .social-links a { width: 2.3rem; height: 2.3rem; background: var(--primary); color: var(--primary-fg); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: bold; }
+    .map-wrap { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; border: 1px solid var(--border); }
+    .map-header { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; padding: 1rem; background: var(--primary); color: var(--primary-fg); }
+    .map-dot { width: 8px; height: 8px; background: var(--secondary); border-radius: 50%; }
+    .map-iframe-wrap iframe { width: 100%; height: 320px; border: 0; display: block; }
+    .map-footer { padding: 0.8rem 1rem; background: var(--card); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; border-top: 1px solid var(--border); font-size: 0.8rem; }
+    .map-link { background: var(--primary); color: var(--primary-fg); padding: 0.3rem 0.8rem; border-radius: 2rem; text-decoration: none; font-weight: 500; }
+    footer { background: var(--primary); color: var(--primary-fg); padding: 2rem 0; }
     .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .footer-logo { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 700; }
-    .footer-links a { color: rgba(250,248,244,0.8); text-decoration: none; margin-left: 1.5rem; font-size: 0.85rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--secondary); }
-    .footer-copy { font-size: 0.8rem; color: rgba(250,248,244,0.6); }
-    .fade-up, .fade-left, .fade-right, .fade-scale { opacity: 0; transition: opacity 0.7s ease, transform 0.7s ease; }
+    .footer-links a { color: rgba(250,248,244,0.8); text-decoration: none; margin-left: 1.5rem; font-size: 0.85rem; }
+    .fade-up, .fade-left, .fade-right { opacity: 0; transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-up { transform: translateY(30px); }
     .fade-left { transform: translateX(-30px); }
     .fade-right { transform: translateX(30px); }
-    .fade-scale { transform: scale(0.96); }
     .visible { opacity: 1 !important; transform: none !important; }
-    @media (max-width: 1024px) {
-      .products-grid, .reviews-grid { grid-template-columns: repeat(2, 1fr); }
-      .recipes-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
-    }
     @media (max-width: 768px) {
       .about-grid, .contact-grid { grid-template-columns: 1fr; }
-      .products-grid, .recipes-grid, .reviews-grid { grid-template-columns: 1fr; }
       .features { grid-template-columns: 1fr; }
       .nav-links { display: none; }
       .footer-inner { flex-direction: column; text-align: center; }
       .footer-links a { margin: 0 0.75rem; }
+      .map-header { flex-direction: column; align-items: flex-start; }
+      .map-footer { flex-direction: column; align-items: flex-start; }
+      .scroll-x > * { width: 260px; }
     }
   </style>
 </head>
 <body>
-
-<nav id="navbar">
-  <div class="container nav-inner">
-    <div class="logo" onclick="scrollToSection('hero')">Asia Market<span>Saarbrücken</span></div>
-    <div class="nav-links">
-      <button onclick="scrollToSection('about')" data-key="nav.about">Über uns</button>
-      <button onclick="scrollToSection('gallery')" data-key="nav.gallery">Galerie</button>
-      <button onclick="scrollToSection('products')" data-key="nav.products">Produkte</button>
-      <button onclick="scrollToSection('recipes')" data-key="nav.recipes">Rezepte</button>
-      <button onclick="scrollToSection('contact')" data-key="nav.contact">Kontakt</button>
-      <button class="lang-btn" id="langToggle" onclick="toggleLang()">EN</button>
-    </div>
-  </div>
-</nav>
-
+<nav id="navbar"><div class="container nav-inner"><div class="logo" onclick="scrollToSection('hero')">Asia Market<span>Saarbrücken</span></div><div class="nav-links"><button onclick="scrollToSection('about')" data-key="nav.about">Über uns</button><button onclick="scrollToSection('gallery')" data-key="nav.gallery">Galerie</button><button onclick="scrollToSection('products')" data-key="nav.products">Produkte</button><button onclick="scrollToSection('recipes')" data-key="nav.recipes">Rezepte</button><button onclick="scrollToSection('contact')" data-key="nav.contact">Kontakt</button><button class="lang-btn" id="langToggle" onclick="toggleLang()">EN</button></div></div></nav>
 <main>
-  <section id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <span class="hero-badge" data-key="hero.notice">Nur zur Information - kein Online-Verkauf</span>
-      <h1 class="hero-title" data-key="hero.title">Die Essenz Asiens in Saarbrücken</h1>
-      <p class="hero-sub" data-key="hero.subtitle">Treten Sie ein in eine Welt voller Aromen. Authentische Gewürze, frische Zutaten und asiatische Spezialitäten.</p>
-    </div>
-    <button class="scroll-arrow" onclick="scrollToSection('about')">↓</button>
-  </section>
-
-  <section id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-img fade-left"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&auto=format&fit=crop&q=80" alt="Marktinneres"></div>
-        <div class="fade-right">
-          <h2 class="about-title" data-key="about.title">Unsere Geschichte</h2>
-          <div class="divider divider-left"></div>
-          <p class="about-desc" data-key="about.desc" style="margin-bottom:1.5rem;line-height:1.7;">Wir sind seit 2008 Ihre erste Adresse für authentische asiatische Lebensmittel in Saarbrücken. Als familiengeführter Markt legen wir Wert auf Qualität, Beratung und eine persönliche Atmosphäre.</p>
-          <div class="features" id="featuresContainer"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="gallery">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title" data-key="gallery.title">Einblick in unseren Markt</h2>
-        <div class="divider"></div>
-      </div>
-      <div class="gallery-grid" id="galleryGrid"></div>
-    </div>
-  </section>
-
-  <section id="products">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title" data-key="products.title">Produkte & Spezialitäten</h2>
-        <div class="divider"></div>
-      </div>
-      <div class="products-grid" id="productsGrid"></div>
-    </div>
-  </section>
-
-  <section id="recipes">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title" data-key="recipes.title">Unsere Lieblingsrezepte</h2>
-        <div class="divider"></div>
-      </div>
-      <div class="recipes-grid" id="recipesGrid"></div>
-    </div>
-  </section>
-
-  <section id="reviews">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title" data-key="reviews.title">Was unsere Kunden sagen</h2>
-        <div class="divider"></div>
-      </div>
-      <div class="reviews-grid" id="reviewsGrid"></div>
-    </div>
-  </section>
-
-  <section id="faq">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title" data-key="faq.title">Häufig gestellte Fragen</h2>
-        <div class="divider"></div>
-      </div>
-      <div class="faq-inner" id="faqList"></div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title" data-key="contact.title">Besuchen Sie uns</h2>
-        <div class="divider"></div>
-      </div>
-      <div class="contact-grid" id="contactGrid"></div>
-    </div>
-  </section>
+  <section id="hero"><div class="hero-bg"></div><div class="hero-content"><span class="hero-badge" data-key="hero.notice">Nur zur Information - kein Online-Verkauf</span><h1 class="hero-title" data-key="hero.title">Die Essenz Asiens in Saarbrücken</h1><p class="hero-sub" data-key="hero.subtitle">Treten Sie ein in eine Welt voller Aromen. Authentische Gewürze, frische Zutaten und asiatische Spezialitäten.</p></div><button class="scroll-arrow" onclick="scrollToSection('about')">↓</button></section>
+  <section id="about"><div class="container"><div class="about-grid"><div class="about-img fade-left"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&auto=format&fit=crop&q=80" alt="Marktinneres"></div><div class="fade-right"><h2 data-key="about.title">Unsere Geschichte</h2><div class="divider divider-left"></div><p data-key="about.desc" style="margin-bottom:1.5rem;">Wir sind seit 2008 Ihre erste Adresse für authentische asiatische Lebensmittel in Saarbrücken. Als familiengeführter Markt legen wir Wert auf Qualität, Beratung und eine persönliche Atmosphäre.</p><div class="features" id="featuresContainer"></div></div></div></div></section>
+  <section id="gallery"><div class="container"><div class="section-header"><h2 class="section-title" data-key="gallery.title">Einblick in unseren Markt</h2><div class="divider"></div></div><div class="gallery-scroll scroll-x" id="galleryGrid"></div></div></section>
+  <section id="products"><div class="container"><div class="section-header"><h2 class="section-title" data-key="products.title">Produkte & Spezialitäten</h2><div class="divider"></div></div><div class="scroll-x" id="productsGrid"></div></div></section>
+  <section id="recipes"><div class="container"><div class="section-header"><h2 class="section-title" data-key="recipes.title">Unsere Lieblingsrezepte</h2><div class="divider"></div></div><div class="scroll-x recipes-scroll" id="recipesGrid"></div></div></section>
+  <section id="reviews"><div class="container"><div class="section-header"><h2 class="section-title" data-key="reviews.title">Was unsere Kunden sagen</h2><div class="divider"></div></div><div class="scroll-x reviews-scroll" id="reviewsGrid"></div></div></section>
+  <section id="faq"><div class="container"><div class="section-header"><h2 class="section-title" data-key="faq.title">Häufig gestellte Fragen</h2><div class="divider"></div></div><div class="faq-inner" id="faqList"></div></div></section>
+  <section id="contact"><div class="container"><div class="section-header"><h2 class="section-title" data-key="contact.title">Besuchen Sie uns</h2><div class="divider"></div></div><div class="contact-grid" id="contactGrid"></div></div></section>
 </main>
-
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div>
-        <div class="footer-logo">Asia Market Saarbrücken</div>
-        <div class="footer-tag" data-key="footer.tagline">Ihre Adresse für authentische asiatische Küche.</div>
-      </div>
-      <div class="footer-links">
-        <a href="#" data-key="footer.impressum">Impressum</a>
-        <a href="#" data-key="footer.privacy">Datenschutz</a>
-      </div>
-      <div class="footer-copy" data-key="footer.copyright">© 2024 Asia Market Saarbrücken. Alle Rechte vorbehalten.</div>
-    </div>
-  </div>
-</footer>
+<footer><div class="container"><div class="footer-inner"><div><div class="footer-logo">Asia Market Saarbrücken</div><div data-key="footer.tagline">Ihre Adresse für authentische asiatische Küche.</div></div><div class="footer-links"><a href="#" data-key="footer.impressum">Impressum</a><a href="#" data-key="footer.privacy">Datenschutz</a></div><div class="footer-copy" data-key="footer.copyright">© 2024 Asia Market Saarbrücken. Alle Rechte vorbehalten.</div></div></div></footer>
 
 <script>
-  // --------------------------- VOLLSTÄNDIGE ZWEISPRACHIGE DATEN ---------------------------
   const translations = {
     de: {
       nav: { about:"Über uns", products:"Produkte", recipes:"Rezepte", gallery:"Galerie", contact:"Kontakt" },
-      hero: { notice:"Nur zur Information - kein Online-Verkauf", title:"Die Essenz Asiens in Saarbrücken", subtitle:"Treten Sie ein in eine Welt voller Aromen. Authentische Gewürze, frische Zutaten und asiatische Spezialitäten." },
-      about: { title:"Unsere Geschichte", desc:"Wir sind seit 2008 Ihre erste Adresse für authentische asiatische Lebensmittel in Saarbrücken. Als familiengeführter Markt legen wir Wert auf Qualität, Beratung und eine persönliche Atmosphäre." },
-      features: [{ title:"15+ Jahre Erfahrung", desc:"Seit 2008 in Saarbrücken" },{ title:"1000+ Produkte", desc:"Sorgfältig für Sie ausgewählt" },{ title:"Familienbetrieb", desc:"Mit Liebe und Leidenschaft geführt" }],
-      products: { title:"Produkte & Spezialitäten" },
-      recipes: { title:"Unsere Lieblingsrezepte" },
-      gallery: { title:"Einblick in unseren Markt" },
-      reviews: { title:"Was unsere Kunden sagen" },
-      faq: { title:"Häufig gestellte Fragen" },
-      contact: { title:"Besuchen Sie uns", hours:"Öffnungszeiten", moFr:"Mo - Fr: 09:00 - 20:00 Uhr", sa:"Sa: 09:00 - 18:00 Uhr", so:"So: Geschlossen", address:"Adresse", addressText:"Trierer Str. 16, 66111 Saarbrücken", phone:"Telefon", email:"E-Mail", social:"Folgen Sie uns" },
-      footer: { tagline:"Ihre Adresse für authentische asiatische Küche.", impressum:"Impressum", privacy:"Datenschutz", copyright:"© 2024 Asia Market Saarbrücken. Alle Rechte vorbehalten." },
+      hero: { notice:"Nur zur Information - kein Online-Verkauf", title:"Die Essenz Asiens in Saarbrücken", subtitle:"Treten Sie ein in eine Welt voller Aromen." },
+      about: { title:"Unsere Geschichte", desc:"Wir sind seit 2008 Ihre erste Adresse für authentische asiatische Lebensmittel in Saarbrücken." },
+      features: [{ title:"15+ Jahre Erfahrung", desc:"Seit 2008" },{ title:"1000+ Produkte", desc:"Sorgfältig ausgewählt" },{ title:"Familienbetrieb", desc:"Mit Leidenschaft" }],
+      products: { title:"Produkte & Spezialitäten" }, recipes: { title:"Unsere Lieblingsrezepte" }, gallery: { title:"Einblick in unseren Markt" }, reviews: { title:"Was unsere Kunden sagen" }, faq: { title:"Häufig gestellte Fragen" },
+      contact: { title:"Besuchen Sie uns", hours:"Öffnungszeiten", moFr:"Mo - Fr: 09:00 - 20:00", sa:"Sa: 09:00 - 18:00", so:"So: Geschlossen", address:"Adresse", addressText:"Trierer Str. 16, 66111 Saarbrücken", phone:"Telefon", email:"E-Mail", social:"Folgen Sie uns" },
+      footer: { tagline:"Ihre Adresse für authentische asiatische Küche.", impressum:"Impressum", privacy:"Datenschutz", copyright:"© 2024 Asia Market Saarbrücken." },
       productList: [
-        { name:"Japanische Snacks", desc:"Entdecken Sie die süße & salzige Vielfalt Japans.", ex:["Pocky","Matcha KitKat","Onigiri","Mochi"], img:"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=500&auto=format&fit=crop&q=70" },
-        { name:"Koreanische Instant-Nudeln", desc:"Schnell, würzig und unvergleichlich lecker.", ex:["Shin Ramyun","Buldak Noodles","Jjajang"], img:"https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=500&auto=format&fit=crop&q=70" },
-        { name:"Thai-Gewürze", desc:"Die Seele der thailändischen Küche.", ex:["Gapi","Kaffir-Limettenblätter","Galangal","Zitronengras"], img:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=500&auto=format&fit=crop&q=70" },
-        { name:"Chinesische Saucen", desc:"Grundlage für authentische Wok-Gerichte.", ex:["Hoisin","Oyster Sauce","Schwarze Bohnensoße","XO Sauce"], img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?w=500&auto=format&fit=crop&q=70" },
-        { name:"Frisches Gemüse", desc:"Wöchentlich frisch importiert.", ex:["Pak Choi","Galangal","Bambus","Wasserspinat"], img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&auto=format&fit=crop&q=70" },
-        { name:"Tiefkühlprodukte", desc:"Praktisch & authentisch.", ex:["Gyoza","Dim Sum","Frühlingsrollen","Bao Buns"], img:"https://images.unsplash.com/photo-1534482421-64566f976cfa?w=500&auto=format&fit=crop&q=70" },
-        { name:"Getränke & Bubble Tea", desc:"Erfrischende Tees & Kultgetränke.", ex:["Taro","Matcha","Lychee","Oolong"], img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format&fit=crop&q=70" },
-        { name:"Mochi & Süßigkeiten", desc:"Traditionelle Desserts.", ex:["Daifuku","Taiyaki","Dorayaki","Ramune"], img:"https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=500&auto=format&fit=crop&q=70" }
+        { name:"Japanische Snacks", desc:"Süß & salzig", ex:["Pocky","Matcha KitKat"], img:"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=500&auto=format&fit=crop&q=70" },
+        { name:"Korean Nudeln", desc:"Würzig", ex:["Shin Ramyun","Buldak"], img:"https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=500&auto=format&fit=crop&q=70" },
+        { name:"Thai Gewürze", desc:"Aromatisch", ex:["Kaffirblätter","Galangal"], img:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=500&auto=format&fit=crop&q=70" },
+        { name:"Chinesische Saucen", desc:"Wok-Basis", ex:["Hoisin","Austernsauce"], img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?w=500&auto=format&fit=crop&q=70" },
+        { name:"Frisches Gemüse", desc:"Wöchentlich", ex:["Pak Choi","Bambus"], img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&auto=format&fit=crop&q=70" },
+        { name:"Tiefkühlprodukte", desc:"Authentisch", ex:["Gyoza","Dim Sum"], img:"https://images.unsplash.com/photo-1534482421-64566f976cfa?w=500&auto=format&fit=crop&q=70" },
+        { name:"Bubble Tea", desc:"Erfrischend", ex:["Taro","Matcha"], img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format&fit=crop&q=70" },
+        { name:"Mochi", desc:"Traditionell", ex:["Daifuku","Taiyaki"], img:"https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=500&auto=format&fit=crop&q=70" }
       ],
       recipeItems: [
-        { title:"Tonkotsu Ramen", ing:"Ramen-Nudeln, Schweinebrühe, Chashu, Ei, Frühlingszwiebeln, Nori", steps:"Brühe erhitzen, Nudeln kochen, mit Toppings anrichten.", img:"https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&auto=format&fit=crop&q=70" },
-        { title:"Fried Rice mit Gemüse", ing:"Jasminreis, Ei, Erbsen, Karotten, Sojasauce, Sesamöl", steps:"Reis anbraten, Gemüse & Ei hinzu, mit Sojasauce abschmecken.", img:"https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&auto=format&fit=crop&q=70" },
-        { title:"Bibimbap", ing:"Rundkornreis, Rindfleisch, Spinat, Sojasprossen, Gochujang, Spiegelei", steps:"Zutaten separat zubereiten, anrichten und mit Gochujang mischen.", img:"https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=600&auto=format&fit=crop&q=70" },
-        { title:"Thai Green Curry", ing:"Grüne Currypaste, Kokosmilch, Hähnchen, Bambussprossen, Thai-Basilikum", steps:"Paste anrösten, mit Kokosmilch ablöschen, Fleisch & Gemüse garen.", img:"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&auto=format&fit=crop&q=70" },
-        { title:"Sushi Rolls (Maki)", ing:"Sushireis, Nori, Lachs, Gurke, Reisessig, Wasabi", steps:"Reis säuern, auf Nori verteilen, rollen und schneiden.", img:"https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&auto=format&fit=crop&q=70" }
+        { title:"Tonkotsu Ramen", ing:"Nudeln, Schweinebrühe, Chashu", steps:"Brühe erhitzen, Toppings anrichten", img:"https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&auto=format&fit=crop&q=70" },
+        { title:"Fried Rice", ing:"Reis, Ei, Gemüse", steps:"Anbraten, würzen", img:"https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&auto=format&fit=crop&q=70" },
+        { title:"Bibimbap", ing:"Reis, Rind, Gochujang", steps:"Anrichten, mischen", img:"https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=600&auto=format&fit=crop&q=70" },
+        { title:"Green Curry", ing:"Currypaste, Kokosmilch", steps:"Anrösten, köcheln", img:"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&auto=format&fit=crop&q=70" },
+        { title:"Sushi Maki", ing:"Reis, Nori, Lachs", steps:"Rollen, schneiden", img:"https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&auto=format&fit=crop&q=70" }
       ],
       reviewList: [
-        { name:"Maria S.", text:"Wunderschöner kleiner Laden mit riesiger Auswahl. Das Personal ist super freundlich und hilft immer weiter." },
-        { name:"Thomas K.", text:"Hier bekomme ich alles für meine Ramen-Abende. Die Auswahl an frischem Gemüse und Saucen ist unübertroffen." },
-        { name:"Yuki T.", text:"Ein Stück Heimat. Ich kaufe hier regelmäßig japanische Snacks und Mochi. Hervorragende Qualität." }
+        { name:"Maria S.", text:"Wunderschöner Laden mit riesiger Auswahl. Personal super freundlich!", stars:5 },
+        { name:"Thomas K.", text:"Alles für meine Ramen-Abende. Frisches Gemüse und Saucen unübertroffen.", stars:5 },
+        { name:"Yuki T.", text:"Ein Stück Heimat. Japanische Snacks und Mochi in bester Qualität.", stars:5 },
+        { name:"Anna L.", text:"Bester Asia-Shop in SB! Immer frische Kräuter und freundliche Beratung.", stars:5 },
+        { name:"Michael R.", text:"Große Auswahl an koreanischen Produkten. Gochujang in jeder Variante.", stars:4 },
+        { name:"Sofia W.", text:"Liebevoll eingerichtet, tolle Rezeptideen. Komme gerne wieder.", stars:5 }
       ],
       faqList: [
-        { q:"Bieten Sie frische Produkte an?", a:"Ja, wir erhalten zweimal wöchentlich frisches asiatisches Gemüse, Kräuter und exotische Früchte." },
-        { q:"Kann ich Produkte vorbestellen?", a:"Selbstverständlich. Wir bestellen gerne spezielle Zutaten für Sie vor." },
-        { q:"Haben Sie vegane/vegetarische Produkte?", a:"Große Auswahl an Tofu, Tempeh, veganen Saucen und Alternativen." }
+        { q:"Frische Produkte?", a:"Ja, zweimal wöchentlich frisches Gemüse und Kräuter." },
+        { q:"Vorbestellung möglich?", a:"Selbstverständlich, wir bestellen spezielle Zutaten für Sie." },
+        { q:"Vegane Optionen?", a:"Große Auswahl an Tofu, Tempeh und veganen Saucen." }
       ]
     },
     en: {
       nav: { about:"About Us", products:"Products", recipes:"Recipes", gallery:"Gallery", contact:"Contact" },
-      hero: { notice:"For informational purposes only - no online sales", title:"The Essence of Asia in Saarbrücken", subtitle:"Step into a world of flavors. Authentic spices, fresh ingredients and Asian specialties." },
-      about: { title:"Our Story", desc:"We have been your premier destination for authentic Asian groceries in Saarbrücken since 2008. As a family-run market, we value quality and a personal atmosphere." },
-      features: [{ title:"15+ Years Experience", desc:"In Saarbrücken since 2008" },{ title:"1000+ Products", desc:"Carefully selected" },{ title:"Family Owned", desc:"Run with love & passion" }],
-      products: { title:"Products & Specialties" },
-      recipes: { title:"Our Favorite Recipes" },
-      gallery: { title:"A Glimpse Into Our Market" },
-      reviews: { title:"What Our Customers Say" },
-      faq: { title:"Frequently Asked Questions" },
-      contact: { title:"Visit Us", hours:"Opening Hours", moFr:"Mon - Fri: 09:00 - 20:00", sa:"Sat: 09:00 - 18:00", so:"Sun: Closed", address:"Address", addressText:"Trierer Str. 16, 66111 Saarbrücken", phone:"Phone", email:"Email", social:"Follow Us" },
-      footer: { tagline:"Your destination for authentic Asian cuisine.", impressum:"Imprint", privacy:"Privacy", copyright:"© 2024 Asia Market Saarbrücken. All rights reserved." },
-      productList: [
-        { name:"Japanese Snacks", desc:"Sweet & savory variety from Japan.", ex:["Pocky","Matcha KitKat","Onigiri","Mochi"], img:"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=500&auto=format&fit=crop&q=70" },
-        { name:"Korean Instant Noodles", desc:"Fast, spicy & delicious.", ex:["Shin Ramyun","Buldak Noodles","Jjajang"], img:"https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=500&auto=format&fit=crop&q=70" },
-        { name:"Thai Spices", desc:"Soul of Thai cuisine.", ex:["Gapi","Kaffir Lime Leaves","Galangal","Lemongrass"], img:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=500&auto=format&fit=crop&q=70" },
-        { name:"Chinese Sauces", desc:"Base for authentic wok dishes.", ex:["Hoisin","Oyster Sauce","Black Bean Sauce","XO Sauce"], img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?w=500&auto=format&fit=crop&q=70" },
-        { name:"Fresh Vegetables", desc:"Imported fresh weekly.", ex:["Pak Choi","Galangal","Bamboo","Water Spinach"], img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&auto=format&fit=crop&q=70" },
-        { name:"Frozen Products", desc:"Convenient & authentic.", ex:["Gyoza","Dim Sum","Spring Rolls","Bao Buns"], img:"https://images.unsplash.com/photo-1534482421-64566f976cfa?w=500&auto=format&fit=crop&q=70" },
-        { name:"Drinks & Bubble Tea", desc:"Refreshing teas.", ex:["Taro","Matcha","Lychee","Oolong"], img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format&fit=crop&q=70" },
-        { name:"Mochi & Sweets", desc:"Traditional desserts.", ex:["Daifuku","Taiyaki","Dorayaki","Ramune"], img:"https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=500&auto=format&fit=crop&q=70" }
-      ],
-      recipeItems: [
-        { title:"Tonkotsu Ramen", ing:"Ramen noodles, pork broth, chashu, egg, scallions, nori", steps:"Heat broth, cook noodles, add toppings and enjoy.", img:"https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&auto=format&fit=crop&q=70" },
-        { title:"Vegetable Fried Rice", ing:"Jasmine rice, egg, peas, carrots, soy sauce, sesame oil", steps:"Fry rice, add veg & egg, season with soy sauce.", img:"https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&auto=format&fit=crop&q=70" },
-        { title:"Bibimbap", ing:"Short-grain rice, beef, spinach, bean sprouts, gochujang, fried egg", steps:"Arrange ingredients on rice and mix with gochujang.", img:"https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=600&auto=format&fit=crop&q=70" },
-        { title:"Thai Green Curry", ing:"Green curry paste, coconut milk, chicken, bamboo shoots, Thai basil", steps:"Sauté paste, deglaze with coconut milk, cook meat & veg.", img:"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&auto=format&fit=crop&q=70" },
-        { title:"Sushi Rolls (Maki)", ing:"Sushi rice, nori, salmon, cucumber, rice vinegar, wasabi", steps:"Season rice, roll with nori and filling, slice.", img:"https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&auto=format&fit=crop&q=70" }
-      ],
-      reviewList: [
-        { name:"Maria S.", text:"Beautiful little shop with huge selection. Super friendly staff always helps." },
-        { name:"Thomas K.", text:"Everything for my ramen nights. Unmatched selection of fresh vegetables and sauces." },
-        { name:"Yuki T.", text:"A piece of home. I regularly buy Japanese snacks & mochi here. Excellent quality." }
-      ],
-      faqList: [
-        { q:"Do you offer fresh products?", a:"Yes, we receive fresh Asian vegetables, herbs and exotic fruits twice a week." },
-        { q:"Can I pre-order products?", a:"Absolutely. We gladly order specific ingredients for you." },
-        { q:"Vegan/vegetarian options?", a:"Large selection of tofu, tempeh, vegan sauces and meat-free alternatives." }
-      ]
+      hero: { notice:"Info only - no online sales", title:"The Essence of Asia in Saarbrücken", subtitle:"Step into a world of flavors." },
+      about: { title:"Our Story", desc:"Since 2008 your premier destination for Asian groceries." },
+      features: [{ title:"15+ Years Exp.", desc:"Since 2008" },{ title:"1000+ Products", desc:"Carefully selected" },{ title:"Family Owned", desc:"With passion" }],
+      products: { title:"Products & Specialties" }, recipes: { title:"Our Favorite Recipes" }, gallery: { title:"Market Gallery" }, reviews: { title:"Customer Reviews" }, faq: { title:"FAQ" },
+      contact: { title:"Visit Us", hours:"Opening Hours", moFr:"Mon-Fri: 9am-8pm", sa:"Sat: 9am-6pm", so:"Sun: Closed", address:"Address", addressText:"Trierer Str. 16, 66111 Saarbrücken", phone:"Phone", email:"Email", social:"Follow Us" },
+      footer: { tagline:"Your destination for authentic Asian cuisine.", impressum:"Imprint", privacy:"Privacy", copyright:"© 2024 Asia Market Saarbrücken." },
+      productList: [ { name:"Japanese Snacks", desc:"Sweet & salty", ex:["Pocky","Matcha KitKat"], img:"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=500&auto=format&fit=crop&q=70" }, { name:"Korean Noodles", desc:"Spicy", ex:["Shin Ramyun"], img:"https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=500&auto=format&fit=crop&q=70" }, { name:"Thai Spices", desc:"Aromatic", ex:["Kaffir Lime"], img:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=500&auto=format&fit=crop&q=70" }, { name:"Chinese Sauces", desc:"Wok base", ex:["Hoisin"], img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?w=500&auto=format&fit=crop&q=70" }, { name:"Fresh Veggies", desc:"Weekly", ex:["Pak Choi"], img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&auto=format&fit=crop&q=70" }, { name:"Frozen", desc:"Authentic", ex:["Gyoza"], img:"https://images.unsplash.com/photo-1534482421-64566f976cfa?w=500&auto=format&fit=crop&q=70" }, { name:"Bubble Tea", desc:"Refreshing", ex:["Taro"], img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format&fit=crop&q=70" }, { name:"Mochi", desc:"Traditional", ex:["Daifuku"], img:"https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=500&auto=format&fit=crop&q=70" } ],
+      recipeItems: [ { title:"Tonkotsu Ramen", ing:"Noodles, broth, chashu", steps:"Heat broth, add toppings", img:"https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&auto=format&fit=crop&q=70" }, { title:"Fried Rice", ing:"Rice, egg, veg", steps:"Stir-fry", img:"https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&auto=format&fit=crop&q=70" }, { title:"Bibimbap", ing:"Rice, beef, gochujang", steps:"Mix", img:"https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=600&auto=format&fit=crop&q=70" }, { title:"Green Curry", ing:"Curry paste, coconut milk", steps:"Simmer", img:"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&auto=format&fit=crop&q=70" }, { title:"Sushi Maki", ing:"Rice, nori, salmon", steps:"Roll, slice", img:"https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&auto=format&fit=crop&q=70" } ],
+      reviewList: [ { name:"Maria S.", text:"Beautiful shop with huge selection. Super friendly staff!", stars:5 }, { name:"Thomas K.", text:"Everything for ramen nights. Fresh veggies unmatched.", stars:5 }, { name:"Yuki T.", text:"A piece of home. Excellent quality mochi.", stars:5 }, { name:"Anna L.", text:"Best Asian shop in SB! Always fresh herbs.", stars:5 }, { name:"Michael R.", text:"Great Korean products. All kinds of gochujang.", stars:4 }, { name:"Sofia W.", text:"Lovely interior, nice recipe ideas. Will come back.", stars:5 } ],
+      faqList: [ { q:"Fresh products?", a:"Yes, fresh vegetables twice a week." }, { q:"Pre-order?", a:"Absolutely, we order special ingredients for you." }, { q:"Vegan options?", a:"Large selection of tofu, tempeh, vegan sauces." } ]
     }
   };
 
   let currentLang = 'de';
-
-  // --- Render-Funktionen ---
-  function renderFeatures() {
-    const t = translations[currentLang];
-    const container = document.getElementById('featuresContainer');
-    if(container) container.innerHTML = t.features.map(f => `<div class="feature"><h3>${f.title}</h3><p>${f.desc}</p></div>`).join('');
-  }
-  function renderProducts() {
-    const t = translations[currentLang];
-    const container = document.getElementById('productsGrid');
-    if(container) container.innerHTML = t.productList.map(p => `
-      <div class="product-card fade-up">
-        <div class="product-img"><img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://placehold.co/400x300?text=Asian+Food'"></div>
-        <div class="product-body"><h3>${p.name}</h3><p>${p.desc}</p><ul>${p.ex.map(e=>`<li>${e}</li>`).join('')}</ul></div>
-      </div>
-    `).join('');
-  }
-  function renderRecipes() {
-    const t = translations[currentLang];
-    const container = document.getElementById('recipesGrid');
-    if(container) container.innerHTML = t.recipeItems.map(r => `
-      <div class="recipe-card fade-up">
-        <div class="recipe-img"><img src="${r.img}" alt="${r.title}" loading="lazy"></div>
-        <div class="recipe-body"><h3>${r.title}</h3><span class="recipe-label">Zutaten / Ingredients</span><p>${r.ing}</p><span class="recipe-label">Zubereitung / Steps</span><p>${r.steps}</p></div>
-      </div>
-    `).join('');
-  }
-  function renderReviews() {
-    const t = translations[currentLang];
-    const container = document.getElementById('reviewsGrid');
-    if(container) container.innerHTML = t.reviewList.map(r => `
-      <div class="review-card fade-up"><div class="review-quote">"</div><div class="stars">★★★★★</div><p class="review-text">"${r.text}"</p><div class="review-name">${r.name}</div></div>
-    `).join('');
-  }
-  function renderFAQ() {
-    const t = translations[currentLang];
-    const container = document.getElementById('faqList');
-    if(container) container.innerHTML = t.faqList.map((f,i) => `
-      <div class="faq-item" id="faq-${i}"><button class="faq-q" onclick="toggleFAQ(${i})">${f.q}<span class="faq-chevron">▾</span></button><div class="faq-a">${f.a}</div></div>
-    `).join('');
-  }
-  function renderGallery() {
-    const galleryImages = [
-      "https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=70",
-      "https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&auto=format&fit=crop&q=70",
-      "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600&auto=format&fit=crop&q=70",
-      "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&auto=format&fit=crop&q=70",
-      "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=70",
-      "https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&auto=format&fit=crop&q=70",
-      "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&auto=format&fit=crop&q=70",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop&q=70"
-    ];
-    const container = document.getElementById('galleryGrid');
-    if(container) container.innerHTML = galleryImages.map((src,i) => `
-      <div class="gallery-item"><div class="gallery-overlay"><span>View</span></div><img src="${src}" alt="Gallery ${i+1}" loading="lazy"></div>
-    `).join('');
-  }
-  function renderContact() {
-    const t = translations[currentLang];
-    const container = document.getElementById('contactGrid');
-    if(!container) return;
-    container.innerHTML = `
-      <div class="fade-left">
-        <div class="contact-block"><div class="contact-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><h3>${t.contact.hours}</h3></div><div class="contact-body"><p>${t.contact.moFr}</p><p>${t.contact.sa}</p><p>${t.contact.so}</p></div></div>
-        <div class="contact-block"><div class="contact-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><h3>${t.contact.address}</h3></div><div class="contact-body">${t.contact.addressText}</div></div>
-        <div class="contact-block"><div class="contact-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.64 19.79 19.79 0 01.18 1 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg><h3>${t.contact.phone}</h3></div><div class="contact-body">+49 681 123456</div></div>
-        <div class="contact-block"><div class="contact-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><h3>${t.contact.email}</h3></div><div class="contact-body">info@asiamarket-sb.de</div></div>
-        <div class="contact-block"><div class="contact-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2H7a5 5 0 00-5 5v10a5 5 0 005 5h10a5 5 0 005-5V7a5 5 0 00-5-5z"/><circle cx="12" cy="12" r="3"/></svg><h3>${t.contact.social}</h3></div><div class="social-links"><a href="#">f</a><a href="#">in</a><a href="#">W</a></div></div>
-      </div>
-      <div class="fade-right">
-        <div class="map-wrap reveal">
-          <div class="map-header">
-            <div class="map-dot"></div>
-            <span class="map-title">Asia Shop Saarbrücken</span>
-            <span class="map-address">Trierer Str. 16, 66111 SB</span>
-          </div>
-          <div class="map-iframe-wrap">
-            <!-- KEIN BILD MEHR – nur die Karte -->
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2616.271288835554!2d6.985390715558659!3d49.23963457939356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4795b6ab9152a77d%3A0xed04bc76aa80b37e!2sTrierer%20Str.%2016%2C%2066111%20Saarbr%C3%BCcken!5e0!3m2!1sde!2sde!4v1717699999999!5m2!1sde!2sde"
-              allowfullscreen
-              loading="lazy"
-              title="Standort Asia Shop Saarbrücken"
-            ></iframe>
-          </div>
-          <div class="map-footer">
-            <span class="map-footer-text">Trierer Straße 16 · 66111 Saarbrücken</span>
-            <a href="https://www.google.com/maps/place/Trierer+Str.+16,+66111+Saarbr%C3%BCcken/" class="map-link" target="_blank" rel="noopener noreferrer">
-              Route planen ↗
-            </a>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  function applyLanguage() {
-    const t = translations[currentLang];
-    document.querySelectorAll('[data-key]').forEach(el => {
-      const key = el.dataset.key;
-      const val = key.split('.').reduce((o,i) => o?.[i], t);
-      if(val !== undefined && el.textContent !== undefined) el.textContent = val;
-    });
-    const langBtn = document.getElementById('langToggle');
-    if(langBtn) langBtn.textContent = currentLang === 'de' ? 'EN' : 'DE';
-    renderFeatures();
-    renderProducts();
-    renderRecipes();
-    renderReviews();
-    renderFAQ();
-    renderContact();
-    document.querySelectorAll('.fade-up, .fade-left, .fade-right, .fade-scale').forEach(el => observer.observe(el));
-  }
-
-  window.toggleLang = () => { currentLang = currentLang === 'de' ? 'en' : 'de'; applyLanguage(); };
-  window.toggleFAQ = (i) => { const item = document.getElementById(`faq-${i}`); if(item) item.classList.toggle('open'); };
-  window.scrollToSection = (id) => { const el = document.getElementById(id); if(el) el.scrollIntoView({ behavior: 'smooth' }); };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
-  }, { threshold: 0.15 });
-
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('navbar');
-    if(nav) nav.classList.toggle('scrolled', window.scrollY > 50);
-  });
-
-  // Initialisierung
-  renderGallery();
-  applyLanguage();
-  setTimeout(() => {
-    document.querySelectorAll('.fade-up, .fade-left, .fade-right, .fade-scale').forEach(el => observer.observe(el));
-  }, 200);
+  function renderFeatures() { const t=translations[currentLang]; document.getElementById('featuresContainer').innerHTML = t.features.map(f=>`<div class="feature"><h3>${f.title}</h3><p>${f.desc}</p></div>`).join(''); }
+  function renderProducts() { const t=translations[currentLang]; document.getElementById('productsGrid').innerHTML = t.productList.map(p=>`<div class="product-card"><div class="product-img"><img src="${p.img}" loading="lazy"></div><div class="product-body"><h3>${p.name}</h3><p>${p.desc}</p><ul>${p.ex.map(e=>`<li>${e}</li>`).join('')}</ul></div></div>`).join(''); }
+  function renderRecipes() { const t=translations[currentLang]; document.getElementById('recipesGrid').innerHTML = t.recipeItems.map(r=>`<div class="recipe-card"><div class="recipe-img"><img src="${r.img}" loading="lazy"></div><div class="recipe-body"><h3>${r.title}</h3><span class="recipe-label">Zutaten</span><p>${r.ing}</p><span class="recipe-label">Zubereitung</span><p>${r.steps}</p></div></div>`).join(''); }
+  function renderReviews() { const t=translations[currentLang]; document.getElementById('reviewsGrid').innerHTML = t.reviewList.map(r=>`<div class="review-card"><div class="review-quote">"</div><div class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div><p class="review-text">"${r.text}"</p><div class="review-name">${r.name}</div></div>`).join(''); }
+  function renderFAQ() { const t=translations[currentLang]; document.getElementById('faqList').innerHTML = t.faqList.map((f,i)=>`<div class="faq-item" id="faq-${i}"><button class="faq-q" onclick="toggleFAQ(${i})">${f.q}<span class="faq-chevron">▾</span></button><div class="faq-a">${f.a}</div></div>`).join(''); }
+  function renderGallery() { const imgs=["https://images.unsplash.com/photo-1542838132-92c53300491e?w=600","https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600","https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600","https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600","https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600","https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600","https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600"]; document.getElementById('galleryGrid').innerHTML = imgs.map(src=>`<div class="gallery-item"><div class="gallery-overlay"><span>View</span></div><img src="${src}" loading="lazy"></div>`).join(''); }
+  function renderContact() { const t=translations[currentLang]; document.getElementById('contactGrid').innerHTML = `<div class="fade-left"><div class="contact-block"><div class="contact-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><h3>${t.contact.hours}</h3></div><div class="contact-body"><p>${t.contact.moFr}</p><p>${t.contact.sa}</p><p>${t.contact.so}</p></div></div><div class="contact-block"><div class="contact-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><h3>${t.contact.address}</h3></div><div class="contact-body">${t.contact.addressText}</div></div><div class="contact-block"><div class="contact-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.64 19.79 19.79 0 01.18 1 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg><h3>${t.contact.phone}</h3></div><div class="contact-body">+49 681 123456</div></div><div class="contact-block"><div class="contact-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><h3>${t.contact.email}</h3></div><div class="contact-body">info@asiamarket-sb.de</div></div><div class="contact-block"><div class="contact-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2H7a5 5 0 00-5 5v10a5 5 0 005 5h10a5 5 0 005-5V7a5 5 0 00-5-5z"/><circle cx="12" cy="12" r="3"/></svg><h3>${t.contact.social}</h3></div><div class="social-links"><a href="#">f</a><a href="#">in</a><a href="#">W</a></div></div></div><div class="fade-right"><div class="map-wrap"><div class="map-header"><div class="map-dot"></div><span class="map-title">Asia Shop Saarbrücken</span><span class="map-address">Trierer Str. 16, 66111 SB</span></div><div class="map-iframe-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2616.271288835554!2d6.985390715558659!3d49.23963457939356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4795b6ab9152a77d%3A0xed04bc76aa80b37e!2sTrierer%20Str.%2016%2C%2066111%20Saarbr%C3%BCcken!5e0!3m2!1sde!2sde!4v1717699999999!5m2!1sde!2sde" allowfullscreen loading="lazy"></iframe></div><div class="map-footer"><span class="map-footer-text">Trierer Straße 16 · 66111 Saarbrücken</span><a href="https://www.google.com/maps/place/Trierer+Str.+16,+66111+Saarbr%C3%BCcken/" class="map-link" target="_blank">Route planen ↗</a></div></div></div>`; }
+  function applyLanguage() { const t=translations[currentLang]; document.querySelectorAll('[data-key]').forEach(el=>{const key=el.dataset.key, val=key.split('.').reduce((o,i)=>o?.[i], t); if(val!==undefined) el.textContent=val;}); document.getElementById('langToggle').textContent=currentLang==='de'?'EN':'DE'; renderFeatures(); renderProducts(); renderRecipes(); renderReviews(); renderFAQ(); renderContact(); document.querySelectorAll('.fade-up, .fade-left, .fade-right').forEach(el=>observer.observe(el)); }
+  window.toggleLang=()=>{currentLang=currentLang==='de'?'en':'de'; applyLanguage();};
+  window.toggleFAQ=(i)=>{document.getElementById(`faq-${i}`).classList.toggle('open');};
+  window.scrollToSection=(id)=>{document.getElementById(id).scrollIntoView({behavior:'smooth'});};
+  const observer = new IntersectionObserver((entries)=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.15});
+  window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);});
+  renderGallery(); applyLanguage(); setTimeout(()=>{document.querySelectorAll('.fade-up, .fade-left, .fade-right').forEach(el=>observer.observe(el));},200);
 </script>
 </body>
 </html>
