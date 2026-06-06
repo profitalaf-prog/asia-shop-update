@@ -156,10 +156,11 @@
   <div class="container nav-inner">
     <div class="logo" onclick="scrollToSection('hero')">Asia Market<span>Saarbrücken</span></div>
     <div class="nav-links">
+      <!-- Reihenfolge: Über uns, Galerie, Produkte, Rezepte, Kontakt – Galerie jetzt direkt nach der Geschichte -->
       <button onclick="scrollToSection('about')" data-key="nav.about">Über uns</button>
+      <button onclick="scrollToSection('gallery')" data-key="nav.gallery">Galerie</button>
       <button onclick="scrollToSection('products')" data-key="nav.products">Produkte</button>
       <button onclick="scrollToSection('recipes')" data-key="nav.recipes">Rezepte</button>
-      <button onclick="scrollToSection('gallery')" data-key="nav.gallery">Galerie</button>
       <button onclick="scrollToSection('contact')" data-key="nav.contact">Kontakt</button>
       <button class="lang-btn" id="langToggle" onclick="toggleLang()">EN</button>
     </div>
@@ -191,15 +192,84 @@
     </div>
   </section>
 
-  <section id="products"><div class="container"><div class="section-header"><h2 class="section-title" data-key="products.title">Produkte & Spezialitäten</h2><div class="divider"></div></div><div class="products-grid" id="productsGrid"></div></div></section>
-  <section id="recipes"><div class="container"><div class="section-header"><h2 class="section-title" data-key="recipes.title">Unsere Lieblingsrezepte</h2><div class="divider"></div></div><div class="recipes-grid" id="recipesGrid"></div></div></section>
-  <section id="gallery"><div class="container"><div class="section-header"><h2 class="section-title" data-key="gallery.title">Einblick in unseren Markt</h2><div class="divider"></div></div><div class="gallery-grid" id="galleryGrid"></div></div></section>
-  <section id="reviews"><div class="container"><div class="section-header"><h2 class="section-title" data-key="reviews.title">Was unsere Kunden sagen</h2><div class="divider"></div></div><div class="reviews-grid" id="reviewsGrid"></div></div></section>
-  <section id="faq"><div class="container"><div class="section-header"><h2 class="section-title" data-key="faq.title">Häufig gestellte Fragen</h2><div class="divider"></div></div><div class="faq-inner" id="faqList"></div></div></section>
-  <section id="contact"><div class="container"><div class="section-header"><h2 class="section-title" data-key="contact.title">Besuchen Sie uns</h2><div class="divider"></div></div><div class="contact-grid" id="contactGrid"></div></div></section>
+  <!-- GALERIE – direkt unter "Unsere Geschichte" verschoben -->
+  <section id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-key="gallery.title">Einblick in unseren Markt</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <!-- Restliche Inhalte (Produkte, Rezepte, Bewertungen, FAQ, Kontakt) folgen unter der Galerie -->
+  <section id="products">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-key="products.title">Produkte & Spezialitäten</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="products-grid" id="productsGrid"></div>
+    </div>
+  </section>
+
+  <section id="recipes">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-key="recipes.title">Unsere Lieblingsrezepte</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="recipes-grid" id="recipesGrid"></div>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-key="reviews.title">Was unsere Kunden sagen</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="reviews-grid" id="reviewsGrid"></div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-key="faq.title">Häufig gestellte Fragen</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="faq-inner" id="faqList"></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-key="contact.title">Besuchen Sie uns</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="contact-grid" id="contactGrid"></div>
+    </div>
+  </section>
 </main>
 
-<footer><div class="container"><div class="footer-inner"><div><div class="footer-logo">Asia Market Saarbrücken</div><div class="footer-tag" data-key="footer.tagline">Ihre Adresse für authentische asiatische Küche.</div></div><div class="footer-links"><a href="#" data-key="footer.impressum">Impressum</a><a href="#" data-key="footer.privacy">Datenschutz</a></div><div class="footer-copy" data-key="footer.copyright">© 2024 Asia Market Saarbrücken. Alle Rechte vorbehalten.</div></div></div></footer>
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Asia Market Saarbrücken</div>
+        <div class="footer-tag" data-key="footer.tagline">Ihre Adresse für authentische asiatische Küche.</div>
+      </div>
+      <div class="footer-links">
+        <a href="#" data-key="footer.impressum">Impressum</a>
+        <a href="#" data-key="footer.privacy">Datenschutz</a>
+      </div>
+      <div class="footer-copy" data-key="footer.copyright">© 2024 Asia Market Saarbrücken. Alle Rechte vorbehalten.</div>
+    </div>
+  </div>
+</footer>
 
 <script>
   // --------------------------- ZWEISPRACHIGE DATEN ---------------------------
@@ -288,7 +358,6 @@
 
   let currentLang = 'de';
 
-  // Render-Funktionen, die immer die aktuellen Daten aus translations[currentLang] holen
   function renderProducts() {
     const t = translations[currentLang];
     const container = document.getElementById('productsGrid');
@@ -372,33 +441,26 @@
     `).join('');
   }
 
-  // Zentrale Sprachaktualisierung
   function applyLanguage() {
     const t = translations[currentLang];
-    // Alle statischen Texte mit data-key ersetzen
     document.querySelectorAll('[data-key]').forEach(el => {
       const key = el.dataset.key;
       const val = key.split('.').reduce((o,i) => o?.[i], t);
       if (val !== undefined && el.textContent !== undefined) el.textContent = val;
     });
-    // Button-Beschriftung
     const langBtn = document.getElementById('langToggle');
     if (langBtn) langBtn.textContent = currentLang === 'de' ? 'EN' : 'DE';
     
-    // Alle dynamischen Komponenten neu zeichnen
     renderFeatures();
     renderProducts();
     renderRecipes();
     renderReviews();
     renderFAQ();
     renderContact();
-    // Galerie bleibt gleich, muss nicht neu gerendert werden (bilder sind sprachunabhängig)
     
-    // Nach dem Neurendern die IntersectionObserver für die neuen Elemente erneut anwenden
     document.querySelectorAll('.fade-up, .fade-left, .fade-right, .fade-scale').forEach(el => observer.observe(el));
   }
 
-  // Globale Funktionen für UI-Interaktion
   window.toggleLang = () => {
     currentLang = currentLang === 'de' ? 'en' : 'de';
     applyLanguage();
@@ -412,23 +474,19 @@
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Intersection Observer für Animationen
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.15 });
 
-  // Navbar Scroll-Effekt
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('navbar');
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
   });
 
-  // Initialisierung der Seite
   renderGallery();
-  applyLanguage();  // setzt alles auf Deutsch und rendert dynamische Inhalte
-  // Zusätzlich Observer für initiale Elemente (falls applyLanguage neue fade-* Elemente hinzugefügt hat)
+  applyLanguage();
   setTimeout(() => {
     document.querySelectorAll('.fade-up, .fade-left, .fade-right, .fade-scale').forEach(el => observer.observe(el));
   }, 200);
