@@ -17,6 +17,7 @@
   <meta property="og:image" content="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&auto=format&fit=crop&q=80">
   <meta property="og:locale" content="de_DE">
   <meta property="og:locale:alternate" content="en_GB">
+  <meta property="og:locale:alternate" content="fr_FR">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Asia Market Saarbrücken">
   <meta name="twitter:description" content="Authentische asiatische Lebensmittel in Saarbrücken seit 2008.">
@@ -383,6 +384,7 @@
     .legal-section h3 { margin-bottom: 0.8rem; color: var(--primary); font-size: 1.2rem; }
     .legal-section p, .legal-section address { margin-bottom: 0.5rem; font-style: normal; line-height: 1.5; font-size: 0.9rem; color: var(--muted-fg); }
   </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -736,6 +738,72 @@ const translations = {
       { q:"Can I pre-order?", a:"Absolutely! We are happy to order special ingredients for you. Just call or stop by." },
       { q:"What vegan options are available?", a:"We carry a wide selection of tofu, tempeh, vegan sauces and plant-based alternatives." }
     ]
+  },
+  fr: {
+    nav: { about:"À propos", products:"Produits", recipes:"Recettes", gallery:"Galerie", contact:"Contact" },
+    hero: {
+      notice:"Information uniquement – pas de vente en ligne",
+      titlePre:"L'", titleShimmer:"Essence", titlePost:" de l'Asie à Sarrebruck",
+      subtitle:"Entrez dans un monde de saveurs. Épices authentiques, ingrédients frais et spécialités asiatiques.",
+      cta1:"Découvrir les produits", cta2:"Nous rendre visite"
+    },
+    about: { title:"Notre Histoire", desc:"Depuis 2008, votre destination privilégiée pour les produits asiatiques authentiques à Sarrebruck. En tant que marché familial, nous privilégions la qualité, les conseils personnalisés et une atmosphère chaleureuse." },
+    features: [
+      { title:"15+ ans d'exp.", desc:"Depuis 2008" },
+      { title:"1000+ Produits", desc:"Sélectionnés avec soin" },
+      { title:"Entreprise familiale", desc:"Avec passion" }
+    ],
+    stats: { years:"Années d'expérience", products:"Produits", regions:"Régions asiatiques", delivery:"Livraison fraîche" },
+    statsConfig: [
+      { target:15, suffix:"+" },
+      { target:1000, suffix:"+" },
+      { target:5, suffix:" Cuisines" },
+      { target:2, suffix:"x/Sem." }
+    ],
+    products: { title:"Produits & Spécialités" },
+    recipes: { title:"Nos Recettes Préférées" },
+    gallery: { title:"Galerie du Marché", viewLabel:"Voir" },
+    reviews: { title:"Avis des Clients" },
+    faq: { title:"Questions Fréquentes" },
+    contact: {
+      title:"Nous Rendre Visite", hours:"Heures d'ouverture",
+      moFr:"Lun – Ven: 9h – 20h", sa:"Sam: 9h – 18h", so:"Dim: Fermé",
+      address:"Adresse", addressText:"Trierer Str. 16, 66111 Sarrebruck",
+      phone:"Téléphone", email:"E-mail", social:"Suivez-nous"
+    },
+    footer: { tagline:"Votre destination pour la cuisine asiatique authentique.", impressum:"Mentions légales", privacy:"Confidentialité", copyright:`© ${new Date().getFullYear()} Asia Market Sarrebruck. Tous droits réservés.` },
+    cookie: { text:"Ce site utilise Google Fonts et Google Maps. En l'utilisant, vous acceptez le traitement.", accept:"Compris" },
+    recipeLabels: { ing:"Ingrédients", steps:"Préparation" },
+    productList: [
+      { name:"Snacks Japonais", desc:"Sucré & salé", ex:["Pocky","Matcha KitKat"], img:"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=500&auto=format&fit=crop&q=70" },
+      { name:"Nouilles Coréennes", desc:"Épicé", ex:["Shin Ramyun","Buldak"], img:"https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=500&auto=format&fit=crop&q=70" },
+      { name:"Épices Thaïlandaises", desc:"Aromatique", ex:["Feuilles de combava","Galanga"], img:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=500&auto=format&fit=crop&q=70" },
+      { name:"Sauces Chinoises", desc:"Base wok", ex:["Hoisin","Sauce d'huître"], img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?w=500&auto=format&fit=crop&q=70" },
+      { name:"Légumes Frais", desc:"Hebdomadaire", ex:["Pak Choi","Bambou"], img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&auto=format&fit=crop&q=70" },
+      { name:"Produits Surgelés", desc:"Authentique", ex:["Gyoza","Dim Sum"], img:"https://images.unsplash.com/photo-1534482421-64566f976cfa?w=500&auto=format&fit=crop&q=70" },
+      { name:"Bubble Tea", desc:"Rafraîchissant", ex:["Taro","Matcha"], img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format&fit=crop&q=70" },
+      { name:"Mochi", desc:"Traditionnel", ex:["Daifuku","Taiyaki"], img:"https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=500&auto=format&fit=crop&q=70" }
+    ],
+    recipeItems: [
+      { title:"Tonkotsu Ramen", ing:"Nouilles, bouillon de porc, chashu", steps:"Chauffer le bouillon, disposer les garnitures", img:"https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&auto=format&fit=crop&q=70" },
+      { title:"Riz Frit", ing:"Riz, œuf, légumes", steps:"Faire sauter, assaisonner", img:"https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&auto=format&fit=crop&q=70" },
+      { title:"Bibimbap", ing:"Riz, bœuf, gochujang", steps:"Disposer, mélanger", img:"https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=600&auto=format&fit=crop&q=70" },
+      { title:"Curry Vert", ing:"Pâte de curry, lait de coco", steps:"Rôtir, mijoter", img:"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&auto=format&fit=crop&q=70" },
+      { title:"Sushi Maki", ing:"Riz, nori, saumon", steps:"Rouler, couper", img:"https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&auto=format&fit=crop&q=70" }
+    ],
+    reviewList: [
+      { name:"Maria S.", text:"Magnifique magasin avec un choix immense. Personnel très sympathique !", stars:5 },
+      { name:"Thomas K.", text:"Tout pour mes soirées ramen. Légumes frais et sauces inégalés.", stars:5 },
+      { name:"Yuki T.", text:"Un morceau de chez moi. Snacks japonais et mochi d'excellente qualité.", stars:5 },
+      { name:"Anna L.", text:"Meilleur magasin asiatique de SB ! Toujours des herbes fraîches et des conseils sympathiques.", stars:5 },
+      { name:"Michael R.", text:"Grand choix de produits coréens. Gochujang dans toutes les variétés.", stars:4 },
+      { name:"Sofia W.", text:"Aménagement soigné, excellentes idées de recettes. Je reviendrai avec plaisir.", stars:5 }
+    ],
+    faqList: [
+      { q:"Y a-t-il des produits frais ?", a:"Oui, nous recevons des légumes et des herbes frais deux fois par semaine directement du marché de gros." },
+      { q:"Est-il possible de précommander ?", a:"Absolument ! Nous commandons volontiers des ingrédients spéciaux pour vous. Appelez ou passez simplement." },
+      { q:"Quelles options végétaliennes proposez-vous ?", a:"Nous proposons une large sélection de tofu, tempeh, sauces végétaliennes et alternatives végétales." }
+    ]
   }
 };
 
@@ -1023,7 +1091,7 @@ function initCookieBanner() {
 /* ─── LANG ────────────────────────────────── */
 function applyLanguage() {
   const t = translations[currentLang];
-  document.documentElement.lang = currentLang;
+  document.documentElement.lang = currentLang === 'en' ? 'en' : (currentLang === 'fr' ? 'fr' : 'de');
 
   /* Alle einfachen data-key Elemente aktualisieren */
   document.querySelectorAll('[data-key]').forEach(el => {
@@ -1031,7 +1099,7 @@ function applyLanguage() {
     if (val !== undefined) el.textContent = val;
   });
 
-  document.getElementById('langToggle').textContent = currentLang === 'de' ? 'EN' : 'DE';
+  document.getElementById('langToggle').textContent = currentLang.toUpperCase();
 
   /* BUG FIX 1: Hero-Titel separat rendern (shimmer-word span bleibt erhalten) */
   renderHeroTitle();
@@ -1091,7 +1159,11 @@ const navObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
 
 /* ─── GLOBALS ─────────────────────────────── */
-window.toggleLang = () => { currentLang = currentLang === 'de' ? 'en' : 'de'; applyLanguage(); };
+window.toggleLang = () => { 
+  const langs = ['de','en','fr']; 
+  currentLang = langs[(langs.indexOf(currentLang) + 1) % langs.length]; 
+  applyLanguage(); 
+};
 window.toggleFAQ = toggleFAQ;
 window.scrollToSection = scrollToSection;
 window.closeMobileMenu = closeMobileMenu;
