@@ -75,19 +75,39 @@
     h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 700; }
     .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
 
-    /* NAV */
+    /* ─── PAGE LOADER ─────────────────────────────── */
+    #page-loader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1.2rem;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    #page-loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-logo { font-family: var(--font-serif); font-size: 2rem; color: var(--primary-fg); animation: loaderPulse 1.2s ease-in-out infinite; }
+    .loader-bar-wrap { width: 160px; height: 3px; background: rgba(255,255,255,0.15); border-radius: 99px; overflow: hidden; }
+    .loader-bar { height: 100%; width: 0%; background: var(--secondary); border-radius: 99px; animation: loaderFill 1.2s ease forwards; }
+    @keyframes loaderPulse { 0%,100%{opacity:1} 50%{opacity:.55} }
+    @keyframes loaderFill { to { width: 100%; } }
+
+    /* ─── NAV ─────────────────────────────────────── */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: all 0.3s ease; padding: 1.5rem 0; }
     nav.scrolled { background: rgba(250,248,244,0.92); backdrop-filter: blur(12px); box-shadow: 0 2px 12px rgba(0,0,0,0.05); padding: 1rem 0; }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
-    .logo { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--primary); cursor: pointer; }
+    .logo { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--primary); cursor: pointer; transition: transform 0.25s ease; }
+    .logo:hover { transform: scale(1.04); }
     .logo span { color: var(--secondary); font-size: 0.8rem; display: block; }
     .nav-links { display: flex; align-items: center; gap: 2rem; }
-    .nav-links button { background: none; border: none; font-size: 0.95rem; font-weight: 500; cursor: pointer; color: var(--foreground); transition: color 0.2s; }
+    .nav-links button { background: none; border: none; font-size: 0.95rem; font-weight: 500; cursor: pointer; color: var(--foreground); transition: color 0.2s; position: relative; }
+    .nav-links button::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--secondary); transition: width 0.3s ease; }
+    .nav-links button:hover::after { width: 100%; }
     .nav-links button:hover { color: var(--primary); }
-    .lang-btn { border: 1px solid rgba(157,86,46,0.25); padding: 0.3rem 0.75rem; border-radius: var(--radius); font-family: monospace; font-size: 0.75rem !important; background: transparent; cursor: pointer; transition: background 0.2s, color 0.2s; }
-    .lang-btn:hover { background: var(--primary); color: var(--primary-fg); }
+    .nav-links button.active { color: var(--secondary); }
+    .nav-links button.active::after { width: 100%; }
+    .lang-btn { border: 1px solid rgba(157,86,46,0.25); padding: 0.3rem 0.75rem; border-radius: var(--radius); font-family: monospace; font-size: 0.75rem !important; background: transparent; cursor: pointer; transition: transform 0.2s ease, background 0.2s, color 0.2s; }
+    .lang-btn:hover { transform: scale(1.05); background: var(--primary); color: var(--primary-fg); }
 
-    /* BURGER */
+    /* ─── BURGER ──────────────────────────────────── */
     .burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 101; }
     .burger span { display: block; width: 22px; height: 2px; background: var(--foreground); border-radius: 2px; transition: all 0.3s; }
     .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -96,8 +116,8 @@
     .mobile-menu { position: fixed; top: 0; right: -100%; width: min(300px,80vw); height: 100dvh; background: var(--card); z-index: 200; padding: 5rem 2rem 2rem; box-shadow: -4px 0 24px rgba(0,0,0,0.12); transition: right 0.35s ease; display: flex; flex-direction: column; }
     .mobile-menu.open { right: 0; }
     .mobile-menu nav { position: static; display: flex; flex-direction: column; gap: 0.5rem; background: none; box-shadow: none; padding: 0; }
-    .mobile-menu nav button { background: none; border: none; text-align: left; padding: 0.75rem 0.5rem; font-size: 1.1rem; font-weight: 500; cursor: pointer; color: var(--foreground); border-bottom: 1px solid var(--border); transition: color 0.2s; }
-    .mobile-menu nav button:hover { color: var(--primary); }
+    .mobile-menu nav button { background: none; border: none; text-align: left; padding: 0.75rem 0.5rem; font-size: 1.1rem; font-weight: 500; cursor: pointer; color: var(--foreground); border-bottom: 1px solid var(--border); transition: color 0.2s, padding-left 0.25s ease; }
+    .mobile-menu nav button:hover { color: var(--primary); padding-left: 1rem; }
     .mobile-close { position: absolute; top: 1.2rem; right: 1.2rem; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--muted-fg); }
     .mobile-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 199; }
     .mobile-overlay.open { display: block; }
@@ -107,50 +127,80 @@
       .nav-inner { justify-content: space-between; }
     }
 
-    /* HERO */
+    /* ─── HERO ────────────────────────────────────── */
     #hero { height: 100dvh; display: flex; align-items: center; justify-content: center; background: var(--primary); position: relative; overflow: hidden; }
     .hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, hsl(157,40%,10%) 0%, hsl(157,20%,20%) 50%, hsl(33,40%,15%) 100%); }
-    .hero-bg::before { content: ''; position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=1600&auto=format&fit=crop&q=70') center/cover; opacity: 0.3; mix-blend-mode: overlay; }
+    .hero-bg::before { content: ''; position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=1600&auto=format&fit=crop&q=70') center/cover; opacity: 0.3; mix-blend-mode: overlay; animation: heroZoom 18s ease-in-out infinite alternate; }
     .hero-bg::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, var(--background), transparent); }
-    .hero-content { position: relative; z-index: 2; text-align: center; max-width: 56rem; padding: 0 1.5rem; margin-top: 4rem; }
-    .hero-badge { display: inline-block; background: rgba(200,140,60,0.12); border: 1px solid rgba(200,140,60,0.3); padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.75rem; text-transform: uppercase; color: hsl(40,33%,90%); margin-bottom: 1rem; }
-    .hero-title { font-size: clamp(2.5rem,8vw,5.5rem); color: hsl(40,33%,98%); line-height: 1.1; margin-bottom: 0.75rem; }
-    .hero-sub { font-size: clamp(1rem,2.5vw,1.35rem); color: rgba(250,248,244,0.85); max-width: 40rem; margin: 0 auto; }
-    .scroll-arrow { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); background: none; border: none; color: rgba(250,248,244,0.6); font-size: 2rem; cursor: pointer; animation: bounce 2s infinite; }
-    .scroll-arrow:focus-visible { outline: 2px solid var(--secondary); outline-offset: 4px; border-radius: 50%; }
-    @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
+    @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
 
-    /* SECTIONS */
+    /* floating orbs */
+    .hero-orb { position: absolute; border-radius: 50%; pointer-events: none; z-index: 1; filter: blur(60px); opacity: 0.18; }
+    .hero-orb-1 { width: 400px; height: 400px; background: hsl(33,80%,55%); top: -100px; right: -80px; animation: orbFloat1 12s ease-in-out infinite; }
+    .hero-orb-2 { width: 300px; height: 300px; background: hsl(157,50%,35%); bottom: 80px; left: -60px; animation: orbFloat2 15s ease-in-out infinite; }
+    .hero-orb-3 { width: 200px; height: 200px; background: hsl(280,40%,50%); top: 40%; left: 55%; animation: orbFloat3 10s ease-in-out infinite; }
+    @keyframes orbFloat1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-30px,25px) scale(1.1)} }
+    @keyframes orbFloat2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(20px,-35px) scale(1.08)} }
+    @keyframes orbFloat3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-15px,20px)} }
+
+    /* hero particles */
+    .hero-particles { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+    .particle { position: absolute; border-radius: 50%; opacity: 0; background: rgba(255,255,255,0.6); animation: particleRise var(--dur, 8s) ease-in var(--delay, 0s) infinite; }
+    @keyframes particleRise {
+      0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+      10%  { opacity: 0.5; }
+      90%  { opacity: 0.2; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+
+    .hero-content { position: relative; z-index: 2; text-align: center; max-width: 56rem; padding: 0 1.5rem; margin-top: 4rem; }
+
+    /* BUG FIX 1: hero-badge/sub behalten data-key, hero-title nutzt JS direkt (kein data-key) */
+    .hero-badge { display: inline-block; background: rgba(200,140,60,0.12); border: 1px solid rgba(200,140,60,0.3); padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.75rem; text-transform: uppercase; color: hsl(40,33%,90%); margin-bottom: 1rem; opacity: 0; animation: fadeInUp 0.7s cubic-bezier(0.2,0.9,0.4,1.1) 0.2s forwards; }
+    .hero-title { font-size: clamp(2.5rem,8vw,5.5rem); color: hsl(40,33%,98%); line-height: 1.1; margin-bottom: 0.75rem; opacity: 0; animation: fadeInUp 0.7s cubic-bezier(0.2,0.9,0.4,1.1) 0.4s forwards; }
+    .hero-title .shimmer-word { display: inline-block; background: linear-gradient(90deg, hsl(40,33%,98%) 0%, hsl(33,80%,75%) 50%, hsl(40,33%,98%) 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: textShimmer 4s linear 1.5s infinite; }
+    @keyframes textShimmer { to { background-position: 200% center; } }
+    .hero-sub { font-size: clamp(1rem,2.5vw,1.35rem); color: rgba(250,248,244,0.85); max-width: 40rem; margin: 0 auto; opacity: 0; animation: fadeInUp 0.7s cubic-bezier(0.2,0.9,0.4,1.1) 0.6s forwards; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    .hero-cta { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 1.8rem; opacity: 0; animation: fadeInUp 0.7s cubic-bezier(0.2,0.9,0.4,1.1) 0.8s forwards; }
+    .btn-primary { background: var(--secondary); color: var(--primary-fg); border: none; padding: 0.7rem 1.6rem; border-radius: 2rem; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s; box-shadow: 0 4px 18px rgba(200,120,40,0.35); font-family: var(--font-sans); }
+    .btn-primary:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 8px 28px rgba(200,120,40,0.5); background: hsl(33,65%,44%); }
+    .btn-ghost { background: rgba(255,255,255,0.08); color: var(--primary-fg); border: 1px solid rgba(255,255,255,0.3); padding: 0.7rem 1.6rem; border-radius: 2rem; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: transform 0.25s ease, background 0.25s; backdrop-filter: blur(6px); font-family: var(--font-sans); }
+    .btn-ghost:hover { transform: translateY(-3px) scale(1.04); background: rgba(255,255,255,0.18); }
+
+    .scroll-arrow { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); background: none; border: none; color: rgba(250,248,244,0.6); font-size: 2rem; cursor: pointer; animation: bounce 2s 1.5s infinite; transition: color 0.3s; }
+    .scroll-arrow:hover { color: var(--secondary); }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(10px)} }
+
+    /* ─── SECTIONS ────────────────────────────────── */
     section { padding: 2rem 0; }
     .section-header { text-align: center; max-width: 48rem; margin: 0 auto 1.5rem; }
     .section-title { font-size: clamp(1.8rem,3.5vw,2.5rem); color: var(--primary); margin-bottom: 0.5rem; }
     .divider { width: 4rem; height: 2px; background: var(--secondary); margin: 0 auto 1.2rem; }
     .divider-left { margin: 0 0 1.2rem 0; }
 
-    /* ABOUT */
+    /* BUG FIX 2: divider-anim – nur eine klare Mechanik via JS .visible direkt auf Element */
+    .divider-anim { width: 0; transition: width 0.8s ease; }
+    .divider-anim.visible { width: 4rem !important; }
+
+    /* ─── ABOUT ───────────────────────────────────── */
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
-    .about-img { aspect-ratio: 4/5; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); }
-    .about-img img { width: 100%; height: 100%; object-fit: cover; }
+    .about-img { aspect-ratio: 4/5; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); position: relative; }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .about-img:hover img { transform: scale(1.04); }
+    .about-img::after { content: ''; position: absolute; inset: 0; background: var(--primary); transform-origin: left; transition: transform 0.8s cubic-bezier(0.77,0,0.175,1); }
+    .about-img.visible::after { transform: scaleX(0); }
+
     .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 1.5rem; }
-    .feature { border-left: 2px solid var(--secondary); padding-left: 0.8rem; }
+    .feature { border-left: 2px solid var(--secondary); padding-left: 0.8rem; transition: transform 0.3s ease, border-color 0.3s; }
+    .feature:hover { transform: translateX(4px); border-color: var(--primary); }
     .feature h3 { font-size: 0.95rem; margin-bottom: 0.2rem; }
     .feature p { font-size: 0.8rem; color: var(--muted-fg); }
 
-    /* SCROLL-X (mobile horizontal, desktop grid) */
-    .scroll-x {
-      overflow-x: auto;
-      overflow-y: visible;
-      -webkit-overflow-scrolling: touch;
-      display: flex;
-      gap: 1rem;
-      padding-bottom: 0.5rem;
-      scrollbar-width: thin;
-    }
-    /* BUG FIX: scroll-snap only on mobile */
-    @media (max-width: 1023px) {
-      .scroll-x { scroll-snap-type: x mandatory; }
-      .scroll-x > * { scroll-snap-align: start; }
-    }
+    /* ─── SCROLL-X ────────────────────────────────── */
+    .scroll-x { overflow-x: auto; overflow-y: visible; -webkit-overflow-scrolling: touch; display: flex; gap: 1rem; padding-bottom: 0.5rem; scrollbar-width: thin; }
+    @media (max-width: 1023px) { .scroll-x { scroll-snap-type: x mandatory; } .scroll-x > * { scroll-snap-align: start; } }
     .scroll-x::-webkit-scrollbar { height: 6px; }
     .scroll-x::-webkit-scrollbar-track { background: var(--border); border-radius: 10px; }
     .scroll-x::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }
@@ -162,110 +212,149 @@
       .reviews-scroll { grid-template-columns: repeat(3, 1fr); }
     }
 
-    /* GALLERY */
+    /* stagger children */
+    .stagger-child { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .stagger-child.visible { opacity: 1; transform: none; }
+
+    /* ─── GALLERY ─────────────────────────────────── */
     .gallery-scroll { display: flex; gap: 1rem; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; padding-bottom: 0.5rem; }
     .gallery-scroll::-webkit-scrollbar { height: 6px; }
     .gallery-scroll::-webkit-scrollbar-track { background: var(--border); border-radius: 10px; }
     .gallery-scroll::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }
     .gallery-item { position: relative; overflow: hidden; border-radius: var(--radius); cursor: pointer; height: 200px; flex-shrink: 0; width: 280px; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; will-change: transform; }
-    .gallery-item:hover img { transform: scale(1.05); }
-    .gallery-overlay { position: absolute; inset: 0; background: rgba(40,84,60,0.4); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center; color: white; font-family: var(--font-serif); font-size: 1.1rem; }
-    .gallery-item:hover .gallery-overlay { opacity: 1; }
-
-    /* BUG FIX: Desktop gallery – proper grid with correct row heights */
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s ease; will-change: transform; }
+    .gallery-item:hover img { transform: scale(1.09); }
+    .gallery-overlay { position: absolute; inset: 0; background: rgba(40,84,60,0.4); opacity: 0; transition: opacity 0.4s ease; backdrop-filter: blur(0px); display: flex; align-items: center; justify-content: center; color: white; font-family: var(--font-serif); font-size: 1.1rem; }
+    .gallery-overlay span { transform: translateY(12px) scale(0.9); transition: transform 0.4s ease; }
+    .gallery-item:hover .gallery-overlay { opacity: 1; backdrop-filter: blur(4px); }
+    .gallery-item:hover .gallery-overlay span { transform: translateY(0) scale(1); }
     @media (min-width: 1024px) {
-      .gallery-scroll {
-        display: grid;
-        overflow-x: visible;
-        padding-bottom: 0;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: 200px 200px;
-        gap: 1rem;
-      }
+      .gallery-scroll { display: grid; overflow-x: visible; padding-bottom: 0; grid-template-columns: repeat(4, 1fr); grid-template-rows: 200px 200px; gap: 1rem; }
       .gallery-item { width: auto; height: 100%; }
       .gallery-scroll .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
       .gallery-scroll .gallery-item:nth-child(4) { grid-column: span 2; }
       .gallery-scroll .gallery-item:nth-child(7) { grid-row: span 2; }
     }
 
-    /* CARDS */
-    .product-card, .recipe-card, .review-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: all 0.3s; }
-    .product-card:hover, .recipe-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .product-img { height: 160px; overflow: hidden; }
-    .recipe-img { height: 160px; overflow: hidden; }
-    .product-img img, .recipe-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; will-change: transform; }
-    .product-card:hover .product-img img, .recipe-card:hover .recipe-img img { transform: scale(1.05); }
+    /* ─── CARDS ───────────────────────────────────── */
+    .product-card, .recipe-card, .review-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform 0.35s cubic-bezier(0.2,0.9,0.4,1.1), box-shadow 0.35s ease; }
+    .product-card:hover, .recipe-card:hover { transform: translateY(-10px) rotate(-0.4deg); box-shadow: 0 24px 40px -12px rgba(0,0,0,0.18); }
+    .review-card:hover { transform: translateY(-6px); box-shadow: 0 16px 28px -10px rgba(0,0,0,0.12); }
+    .product-img { height: 160px; overflow: hidden; position: relative; }
+    .recipe-img { height: 160px; overflow: hidden; position: relative; }
+    .product-img img, .recipe-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s ease; will-change: transform; }
+    .product-card:hover .product-img img, .recipe-card:hover .recipe-img img { transform: scale(1.08); }
+
+    /* card shimmer on hover */
+    .product-card { position: relative; }
+    .recipe-card { position: relative; }
+    .product-card::before, .recipe-card::before {
+      content: ''; position: absolute; top: 0; left: -75%; width: 50%; height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+      transform: skewX(-20deg); pointer-events: none; z-index: 2; transition: left 0.5s ease;
+    }
+    .product-card:hover::before, .recipe-card:hover::before { left: 125%; }
+
     .product-body, .recipe-body { padding: 0.8rem; }
     .product-body h3, .recipe-body h3 { font-size: 1.1rem; margin-bottom: 0.3rem; }
     .product-body p, .recipe-body p { font-size: 0.75rem; color: var(--muted-fg); margin-bottom: 0.3rem; }
     .product-body ul { list-style: none; }
     .product-body li { font-size: 0.7rem; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.2rem; }
-    .product-body li::before { content: ''; width: 6px; height: 6px; background: var(--secondary); border-radius: 50%; flex-shrink: 0; }
+    .product-body li::before { content: ''; width: 6px; height: 6px; background: var(--secondary); border-radius: 50%; flex-shrink: 0; transition: transform 0.2s; }
+    .product-card:hover .product-body li::before { transform: scale(1.4); }
     .recipe-label { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; color: var(--secondary); display: block; margin-bottom: 0.1rem; }
     .review-card { padding: 1.2rem; position: relative; }
-    .review-quote { font-family: var(--font-serif); font-size: 2.5rem; color: rgba(200,140,60,0.15); position: absolute; top: 0rem; left: 0.8rem; line-height: 1; }
+    .review-quote { font-family: var(--font-serif); font-size: 2.5rem; color: rgba(200,140,60,0.15); position: absolute; top: 0; left: 0.8rem; line-height: 1; transition: color 0.3s, font-size 0.3s; }
+    .review-card:hover .review-quote { color: rgba(200,140,60,0.3); font-size: 2.8rem; }
     .stars { color: var(--secondary); margin-bottom: 0.5rem; font-size: 0.8rem; }
     .review-text { font-style: italic; color: var(--muted-fg); margin-bottom: 0.8rem; font-size: 0.8rem; line-height: 1.4; }
     .review-name { font-weight: 700; color: var(--primary); font-size: 0.85rem; }
 
-    /* FAQ */
+    /* ─── STATS STRIP ─────────────────────────────── */
+    /* BUG FIX 3: stripShimmer mit background-size statt background-position (funktioniert mit linear-gradient) */
+    .stats-strip { background: var(--primary); padding: 2rem 0; overflow: hidden; position: relative; }
+    .stats-strip::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(200,140,60,0.1) 50%, transparent 100%);
+      background-size: 200% 100%;
+      animation: stripShimmer 3s linear infinite;
+    }
+    @keyframes stripShimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+    .stats-inner { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 1rem; position: relative; }
+    .stat-item { text-align: center; color: var(--primary-fg); }
+    .stat-num { font-family: var(--font-serif); font-size: 2.5rem; font-weight: 700; color: var(--secondary); line-height: 1; }
+    .stat-label { font-size: 0.8rem; opacity: 0.8; margin-top: 0.2rem; }
+
+    /* ─── FAQ ─────────────────────────────────────── */
     .faq-inner { max-width: 56rem; margin: 0 auto; }
     .faq-item { border-bottom: 1px solid var(--border); }
-    .faq-q { width: 100%; background: none; border: none; text-align: left; padding: 0.8rem 0; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--primary); font-size: 0.95rem; font-family: var(--font-sans); }
-    .faq-chevron { transition: transform 0.3s; display: inline-block; }
+    .faq-q { width: 100%; background: none; border: none; text-align: left; padding: 0.8rem 0; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--primary); font-size: 0.95rem; font-family: var(--font-sans); transition: color 0.2s; }
+    .faq-q:hover { color: var(--secondary); }
+    .faq-chevron { transition: transform 0.3s ease; display: inline-block; color: var(--secondary); }
     .faq-item.open .faq-chevron { transform: rotate(180deg); }
-    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--muted-fg); font-size: 0.85rem; line-height: 1.4; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; color: var(--muted-fg); font-size: 0.85rem; line-height: 1.4; }
     .faq-item.open .faq-a { max-height: 200px; padding-bottom: 0.8rem; }
 
-    /* CONTACT */
+    /* ─── CONTACT ─────────────────────────────────── */
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
     .contact-block { margin-bottom: 1.5rem; }
     .contact-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
-    .contact-head svg { width: 1.2rem; height: 1.2rem; color: var(--secondary); flex-shrink: 0; }
+    .contact-head svg { width: 1.2rem; height: 1.2rem; color: var(--secondary); flex-shrink: 0; transition: transform 0.3s ease; }
+    .contact-block:hover .contact-head svg { transform: scale(1.2) rotate(-5deg); }
     .contact-head h3 { font-size: 1rem; color: var(--primary); }
     .contact-body { padding-left: 1.8rem; color: var(--muted-fg); font-size: 0.85rem; line-height: 1.6; }
     .social-links { display: flex; gap: 0.6rem; padding-left: 1.8rem; }
-    .social-links a { width: 2rem; height: 2rem; background: var(--primary); color: var(--primary-fg); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: background 0.2s; }
-    .social-links a:hover { background: var(--secondary); color: var(--primary); }
+    .social-links a { width: 2rem; height: 2rem; background: var(--primary); color: var(--primary-fg); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: background 0.25s, transform 0.25s cubic-bezier(0.2,0.9,0.4,1.3); }
+    .social-links a:hover { background: var(--secondary); color: var(--primary); transform: scale(1.2) rotate(-5deg); }
 
-    /* MAP */
+    /* ─── MAP ─────────────────────────────────────── */
     .map-wrap { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; border: 1px solid var(--border); }
     .map-header { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; padding: 0.8rem 1rem; background: var(--primary); color: var(--primary-fg); }
-    .map-dot { width: 8px; height: 8px; background: var(--secondary); border-radius: 50%; flex-shrink: 0; }
+    .map-dot { width: 8px; height: 8px; background: var(--secondary); border-radius: 50%; animation: dotPulse 2s ease-in-out infinite; flex-shrink: 0; }
+    @keyframes dotPulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.6);opacity:0.6} }
     .map-title { font-weight: 700; font-family: var(--font-serif); font-size: 1rem; }
     .map-address { font-size: 0.7rem; opacity: 0.8; margin-left: auto; }
     .map-iframe-wrap iframe { width: 100%; height: 280px; border: 0; display: block; }
     .map-footer { padding: 0.7rem 1rem; background: var(--card); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--muted-fg); }
-    .map-link { background: var(--primary); color: var(--primary-fg); padding: 0.25rem 0.7rem; border-radius: 2rem; text-decoration: none; font-weight: 500; font-size: 0.75rem; transition: background 0.2s; }
-    .map-link:hover { background: var(--secondary); color: var(--primary-fg); }
+    .map-link { background: var(--primary); color: var(--primary-fg); padding: 0.25rem 0.7rem; border-radius: 2rem; text-decoration: none; font-weight: 500; font-size: 0.75rem; transition: transform 0.2s ease, background 0.2s; }
+    .map-link:hover { transform: scale(1.06) translateY(-2px); background: var(--secondary); }
 
-    /* FOOTER */
+    /* ─── FOOTER ──────────────────────────────────── */
     footer { background: var(--primary); color: var(--primary-fg); padding: 1.5rem 0; }
     .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
     .footer-logo { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .footer-links a { color: rgba(250,248,244,0.8); text-decoration: none; margin-left: 1.5rem; font-size: 0.8rem; transition: color 0.2s; }
+    .footer-links a { color: rgba(250,248,244,0.8); text-decoration: none; margin-left: 1.5rem; font-size: 0.8rem; position: relative; transition: color 0.2s; }
+    .footer-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--secondary); transition: width 0.25s; }
+    .footer-links a:hover::after { width: 100%; }
     .footer-links a:hover { color: var(--secondary); }
 
-    /* ANIMATIONS */
-    .fade-up, .fade-left, .fade-right { opacity: 0; transition: opacity 0.5s ease, transform 0.5s ease; will-change: opacity, transform; }
-    .fade-up { transform: translateY(20px); }
-    .fade-left { transform: translateX(-20px); }
-    .fade-right { transform: translateX(20px); }
+    /* ─── SCROLL ANIMATIONS ───────────────────────── */
+    .fade-up, .fade-left, .fade-right { opacity: 0; transition: opacity 0.6s ease, transform 0.6s ease; will-change: opacity, transform; }
+    .fade-up { transform: translateY(28px); }
+    .fade-left { transform: translateX(-28px); }
+    .fade-right { transform: translateX(28px); }
     .visible { opacity: 1 !important; transform: none !important; }
 
-    /* ACCESSIBILITY */
+    /* ─── BACK TO TOP ─────────────────────────────── */
+    .back-top { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 2.5rem; height: 2.5rem; background: var(--secondary); color: var(--primary-fg); border: none; border-radius: 50%; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.2); opacity: 0; transform: translateY(10px) scale(0.8); transition: opacity 0.3s, transform 0.3s cubic-bezier(0.2,0.9,0.4,1.3); z-index: 90; }
+    .back-top.show { opacity: 1; transform: translateY(0) scale(1); }
+    .back-top:hover { transform: translateY(-3px) scale(1.1); background: hsl(33,65%,44%); }
+
+    /* ─── ACCESSIBILITY ───────────────────────────── */
     :focus-visible { outline: 2px solid var(--secondary); outline-offset: 3px; border-radius: 2px; }
     button:focus:not(:focus-visible), a:focus:not(:focus-visible) { outline: none; }
 
-    /* REDUCED MOTION */
+    /* ─── REDUCED MOTION ──────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
-      .fade-up, .fade-left, .fade-right { transition: none; opacity: 1; transform: none; }
-      .scroll-arrow { animation: none; }
+      .fade-up, .fade-left, .fade-right, .stagger-child { transition: none; opacity: 1; transform: none; }
+      .hero-bg::before, .hero-orb-1, .hero-orb-2, .hero-orb-3 { animation: none; }
+      .scroll-arrow, .map-dot, .loader-logo, .loader-bar, .particle { animation: none; }
       * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+      .about-img::after { transform: scaleX(0); }
+      .divider-anim { width: 4rem; }
     }
 
-    /* RESPONSIVE */
+    /* ─── RESPONSIVE ──────────────────────────────── */
     @media (max-width: 768px) {
       .about-grid, .contact-grid { grid-template-columns: 1fr; }
       .features { grid-template-columns: 1fr; }
@@ -277,22 +366,35 @@
       .gallery-item { width: 260px; }
       section { padding: 1.5rem 0; }
       .section-header { margin-bottom: 1rem; }
+      .stat-num { font-size: 2rem; }
+      .hero-orb-3 { display: none; }
     }
 
-    /* COOKIE BANNER */
-    .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--primary); color: var(--primary-fg); padding: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
+    /* ─── COOKIE BANNER ───────────────────────────── */
+    .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: var(--primary); color: var(--primary-fg); padding: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); animation: slideUp 0.4s ease-out; }
     .cookie-banner p { margin: 0; font-size: 0.85rem; flex: 1; }
-    .cookie-banner button { background: var(--secondary); border: none; padding: 0.5rem 1rem; border-radius: var(--radius); color: var(--primary-fg); font-weight: bold; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
-    .cookie-banner button:hover { background: hsl(33,65%,40%); }
+    .cookie-banner button { background: var(--secondary); border: none; padding: 0.5rem 1rem; border-radius: var(--radius); color: var(--primary-fg); font-weight: bold; cursor: pointer; transition: transform 0.2s, background 0.2s; font-family: var(--font-sans); }
+    .cookie-banner button:hover { transform: scale(1.05); background: hsl(33,65%,40%); }
+    @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     @media (max-width: 768px) { .cookie-banner { flex-direction: column; text-align: center; } }
 
-    /* LEGAL */
+    /* ─── LEGAL ───────────────────────────────────── */
     .legal-section { background: var(--card); border-radius: var(--radius); padding: 1.5rem; margin-top: 2rem; border: 1px solid var(--border); }
     .legal-section h3 { margin-bottom: 0.8rem; color: var(--primary); font-size: 1.2rem; }
     .legal-section p, .legal-section address { margin-bottom: 0.5rem; font-style: normal; line-height: 1.5; font-size: 0.9rem; color: var(--muted-fg); }
   </style>
 </head>
 <body>
+
+<!-- PAGE LOADER -->
+<div id="page-loader">
+  <div class="loader-logo">🥢 Asia Market</div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+</div>
+
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Nach oben">↑</button>
+
 <nav id="navbar">
   <div class="container nav-inner">
     <div class="logo" onclick="scrollToSection('hero')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')scrollToSection('hero')">Asia Market<span>Saarbrücken</span></div>
@@ -308,8 +410,8 @@
       <span></span><span></span><span></span>
     </button>
   </div>
-  <!-- BUG FIX: mobile-menu moved outside nav to avoid nested nav landmark -->
 </nav>
+
 <div id="mobileMenu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation">
   <button class="mobile-close" onclick="closeMobileMenu()" aria-label="Menü schließen">✕</button>
   <nav>
@@ -323,16 +425,28 @@
 <div id="mobileOverlay" class="mobile-overlay" onclick="closeMobileMenu()"></div>
 
 <main>
+  <!-- HERO -->
   <section id="hero">
     <div class="hero-bg"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-particles" id="heroParticles"></div>
     <div class="hero-content">
-      <span class="hero-badge" data-key="hero.notice">Nur zur Information - kein Online-Verkauf</span>
-      <h1 class="hero-title" data-key="hero.title">Die Essenz Asiens in Saarbrücken</h1>
+      <!-- BUG FIX 1: hero-badge & hero-sub haben data-key; hero-title hat KEIN data-key
+           sondern wird per renderHeroTitle() neu gerendert, um den shimmer-word span zu erhalten -->
+      <span class="hero-badge" data-key="hero.notice">Nur zur Information – kein Online-Verkauf</span>
+      <h1 class="hero-title" id="heroTitle">Die <span class="shimmer-word">Essenz</span> Asiens in Saarbrücken</h1>
       <p class="hero-sub" data-key="hero.subtitle">Treten Sie ein in eine Welt voller Aromen. Authentische Gewürze, frische Zutaten und asiatische Spezialitäten.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" id="heroCta1" onclick="scrollToSection('products')">Produkte entdecken</button>
+        <button class="btn-ghost" id="heroCta2" onclick="scrollToSection('contact')">Uns besuchen</button>
+      </div>
     </div>
     <button class="scroll-arrow" onclick="scrollToSection('about')" aria-label="Nach unten scrollen">↓</button>
   </section>
 
+  <!-- ABOUT -->
   <section id="about">
     <div class="container">
       <div class="about-grid">
@@ -341,7 +455,7 @@
         </div>
         <div class="fade-right">
           <h2 data-key="about.title">Unsere Geschichte</h2>
-          <div class="divider divider-left"></div>
+          <div class="divider divider-left divider-anim"></div>
           <p data-key="about.desc" style="margin-bottom:1rem;">Wir sind seit 2008 Ihre erste Adresse für authentische asiatische Lebensmittel in Saarbrücken. Als familiengeführter Markt legen wir Wert auf Qualität, Beratung und eine persönliche Atmosphäre.</p>
           <div class="features" id="featuresContainer"></div>
         </div>
@@ -349,61 +463,92 @@
     </div>
   </section>
 
+  <!-- STATS STRIP -->
+  <div class="stats-strip fade-up">
+    <div class="container">
+      <div class="stats-inner" id="statsInner">
+        <div class="stat-item">
+          <div class="stat-num" data-target="15" data-suffix="+">0</div>
+          <div class="stat-label" data-key="stats.years">Jahre Erfahrung</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="1000" data-suffix="+">0</div>
+          <div class="stat-label" data-key="stats.products">Produkte</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="5" data-suffix=" Küchen">0</div>
+          <div class="stat-label" data-key="stats.regions">Asiatische Regionen</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="2" data-suffix="x/Wo">0</div>
+          <div class="stat-label" data-key="stats.delivery">Frische Lieferung</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
   <section id="gallery">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header fade-up">
         <h2 class="section-title" data-key="gallery.title">Einblick in unseren Markt</h2>
-        <div class="divider"></div>
+        <div class="divider divider-anim"></div>
       </div>
+      <!-- BUG FIX 4: galleryGrid wird jetzt auch vom staggerObserver beobachtet -->
       <div class="gallery-scroll" id="galleryGrid"></div>
     </div>
   </section>
 
+  <!-- PRODUCTS -->
   <section id="products">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header fade-up">
         <h2 class="section-title" data-key="products.title">Produkte & Spezialitäten</h2>
-        <div class="divider"></div>
+        <div class="divider divider-anim"></div>
       </div>
       <div class="scroll-x" id="productsGrid"></div>
     </div>
   </section>
 
+  <!-- RECIPES -->
   <section id="recipes">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header fade-up">
         <h2 class="section-title" data-key="recipes.title">Unsere Lieblingsrezepte</h2>
-        <div class="divider"></div>
+        <div class="divider divider-anim"></div>
       </div>
       <div class="scroll-x recipes-scroll" id="recipesGrid"></div>
     </div>
   </section>
 
+  <!-- REVIEWS -->
   <section id="reviews">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header fade-up">
         <h2 class="section-title" data-key="reviews.title">Was unsere Kunden sagen</h2>
-        <div class="divider"></div>
+        <div class="divider divider-anim"></div>
       </div>
       <div class="scroll-x reviews-scroll" id="reviewsGrid"></div>
     </div>
   </section>
 
+  <!-- FAQ -->
   <section id="faq">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header fade-up">
         <h2 class="section-title" data-key="faq.title">Häufig gestellte Fragen</h2>
-        <div class="divider"></div>
+        <div class="divider divider-anim"></div>
       </div>
       <div class="faq-inner" id="faqList"></div>
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header fade-up">
         <h2 class="section-title" data-key="contact.title">Besuchen Sie uns</h2>
-        <div class="divider"></div>
+        <div class="divider divider-anim"></div>
       </div>
       <div class="contact-grid" id="contactGrid"></div>
     </div>
@@ -425,8 +570,8 @@
     <div id="datenschutz" class="legal-section" style="display:none;">
       <h3>Datenschutzerklärung</h3>
       <p><strong>Verantwortlicher:</strong> Asia Market Saarbrücken, Trierer Str. 16, 66111 Saarbrücken, info@asiamarket-sb.de</p>
-      <p><strong>Datenverarbeitung:</strong> Diese Website nutzt Google Fonts und Google Maps. Durch die Einbindung werden IP-Adressen an Google LLC (USA) übermittelt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an ansprechender Darstellung) sowie Art. 49 Abs. 1 lit. a DSGVO (Ihre ausdrückliche Einwilligung durch Nutzung der Seite).</p>
-      <p>Es werden keine personenbezogenen Daten über Kontaktformulare erhoben. Server-Logfiles speichern technische Informationen (z.B. Browsertyp, Referrer) für 7 Tage zur Sicherheit.</p>
+      <p><strong>Datenverarbeitung:</strong> Diese Website nutzt Google Fonts und Google Maps. Durch die Einbindung werden IP-Adressen an Google LLC (USA) übermittelt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.</p>
+      <p>Es werden keine personenbezogenen Daten über Kontaktformulare erhoben.</p>
       <p><strong>Ihre Rechte:</strong> Auskunft, Löschung, Berichtigung, Einschränkung der Verarbeitung, Widerspruch. Kontakt: datenschutz@asiamarket-sb.de (Platzhalter).</p>
     </div>
   </div>
@@ -454,395 +599,517 @@
 </div>
 
 <script>
-  const translations = {
-    de: {
-      nav: { about:"Über uns", products:"Produkte", recipes:"Rezepte", gallery:"Galerie", contact:"Kontakt" },
-      hero: { notice:"Nur zur Information - kein Online-Verkauf", title:"Die Essenz Asiens in Saarbrücken", subtitle:"Treten Sie ein in eine Welt voller Aromen. Authentische Gewürze, frische Zutaten und asiatische Spezialitäten." },
-      about: { title:"Unsere Geschichte", desc:"Wir sind seit 2008 Ihre erste Adresse für authentische asiatische Lebensmittel in Saarbrücken. Als familiengeführter Markt legen wir Wert auf Qualität, Beratung und eine persönliche Atmosphäre." },
-      features: [
-        { title:"15+ Jahre Erfahrung", desc:"Seit 2008" },
-        { title:"1000+ Produkte", desc:"Sorgfältig ausgewählt" },
-        { title:"Familienbetrieb", desc:"Mit Leidenschaft" }
-      ],
-      products: { title:"Produkte & Spezialitäten" },
-      recipes: { title:"Unsere Lieblingsrezepte" },
-      gallery: { title:"Einblick in unseren Markt", viewLabel:"Ansehen" },
-      reviews: { title:"Was unsere Kunden sagen" },
-      faq: { title:"Häufig gestellte Fragen" },
-      contact: {
-        title:"Besuchen Sie uns", hours:"Öffnungszeiten",
-        moFr:"Mo – Fr: 09:00 – 20:00", sa:"Sa: 09:00 – 18:00", so:"So: Geschlossen",
-        address:"Adresse", addressText:"Trierer Str. 16, 66111 Saarbrücken",
-        phone:"Telefon", email:"E-Mail", social:"Folgen Sie uns"
-      },
-      footer: { tagline:"Ihre Adresse für authentische asiatische Küche.", impressum:"Impressum", privacy:"Datenschutz", copyright:`© ${new Date().getFullYear()} Asia Market Saarbrücken. Alle Rechte vorbehalten.` },
-      cookie: { text:"Diese Website verwendet Google Fonts und Google Maps. Mit der Nutzung stimmen Sie der Verarbeitung zu.", accept:"Verstanden" },
-      recipeLabels: { ing:"Zutaten", steps:"Zubereitung" },
-      productList: [
-        { name:"Japanische Snacks", desc:"Süß & salzig", ex:["Pocky","Matcha KitKat"], img:"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=500&auto=format&fit=crop&q=70" },
-        { name:"Korean Nudeln", desc:"Würzig", ex:["Shin Ramyun","Buldak"], img:"https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=500&auto=format&fit=crop&q=70" },
-        { name:"Thai Gewürze", desc:"Aromatisch", ex:["Kaffirblätter","Galangal"], img:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=500&auto=format&fit=crop&q=70" },
-        { name:"Chinesische Saucen", desc:"Wok-Basis", ex:["Hoisin","Austernsauce"], img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?w=500&auto=format&fit=crop&q=70" },
-        { name:"Frisches Gemüse", desc:"Wöchentlich", ex:["Pak Choi","Bambus"], img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&auto=format&fit=crop&q=70" },
-        { name:"Tiefkühlprodukte", desc:"Authentisch", ex:["Gyoza","Dim Sum"], img:"https://images.unsplash.com/photo-1534482421-64566f976cfa?w=500&auto=format&fit=crop&q=70" },
-        { name:"Bubble Tea", desc:"Erfrischend", ex:["Taro","Matcha"], img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format&fit=crop&q=70" },
-        { name:"Mochi", desc:"Traditionell", ex:["Daifuku","Taiyaki"], img:"https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=500&auto=format&fit=crop&q=70" }
-      ],
-      recipeItems: [
-        { title:"Tonkotsu Ramen", ing:"Nudeln, Schweinebrühe, Chashu", steps:"Brühe erhitzen, Toppings anrichten", img:"https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&auto=format&fit=crop&q=70" },
-        { title:"Fried Rice", ing:"Reis, Ei, Gemüse", steps:"Anbraten, würzen", img:"https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&auto=format&fit=crop&q=70" },
-        { title:"Bibimbap", ing:"Reis, Rind, Gochujang", steps:"Anrichten, mischen", img:"https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=600&auto=format&fit=crop&q=70" },
-        { title:"Green Curry", ing:"Currypaste, Kokosmilch", steps:"Anrösten, köcheln", img:"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&auto=format&fit=crop&q=70" },
-        { title:"Sushi Maki", ing:"Reis, Nori, Lachs", steps:"Rollen, schneiden", img:"https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&auto=format&fit=crop&q=70" }
-      ],
-      reviewList: [
-        { name:"Maria S.", text:"Wunderschöner Laden mit riesiger Auswahl. Personal super freundlich!", stars:5 },
-        { name:"Thomas K.", text:"Alles für meine Ramen-Abende. Frisches Gemüse und Saucen unübertroffen.", stars:5 },
-        { name:"Yuki T.", text:"Ein Stück Heimat. Japanische Snacks und Mochi in bester Qualität.", stars:5 },
-        { name:"Anna L.", text:"Bester Asia-Shop in SB! Immer frische Kräuter und freundliche Beratung.", stars:5 },
-        { name:"Michael R.", text:"Große Auswahl an koreanischen Produkten. Gochujang in jeder Variante.", stars:4 },
-        { name:"Sofia W.", text:"Liebevoll eingerichtet, tolle Rezeptideen. Komme gerne wieder.", stars:5 }
-      ],
-      faqList: [
-        { q:"Gibt es frische Produkte?", a:"Ja, wir erhalten zweimal wöchentlich frisches Gemüse und Kräuter direkt vom Großmarkt." },
-        { q:"Ist eine Vorbestellung möglich?", a:"Selbstverständlich! Wir bestellen spezielle Zutaten gerne für Sie vor. Einfach anrufen oder vorbeikommen." },
-        { q:"Welche veganen Optionen gibt es?", a:"Wir führen eine große Auswahl an Tofu, Tempeh, veganen Saucen und pflanzlichen Alternativen." }
-      ]
+/* ═══════════════════════════════════════════════════════
+   TRANSLATIONS
+═══════════════════════════════════════════════════════ */
+const translations = {
+  de: {
+    nav: { about:"Über uns", products:"Produkte", recipes:"Rezepte", gallery:"Galerie", contact:"Kontakt" },
+    hero: {
+      notice:"Nur zur Information – kein Online-Verkauf",
+      /* BUG FIX 1: Titel wird aufgeteilt, damit shimmer-word erhalten bleibt */
+      titlePre:"Die ", titleShimmer:"Essenz", titlePost:" Asiens in Saarbrücken",
+      subtitle:"Treten Sie ein in eine Welt voller Aromen. Authentische Gewürze, frische Zutaten und asiatische Spezialitäten.",
+      cta1:"Produkte entdecken", cta2:"Uns besuchen"
     },
-    en: {
-      nav: { about:"About Us", products:"Products", recipes:"Recipes", gallery:"Gallery", contact:"Contact" },
-      hero: { notice:"Info only – no online sales", title:"The Essence of Asia in Saarbrücken", subtitle:"Step into a world of flavors. Authentic spices, fresh ingredients and Asian specialties." },
-      about: { title:"Our Story", desc:"Since 2008, your premier destination for authentic Asian groceries in Saarbrücken. As a family-run market we value quality, personal advice and a welcoming atmosphere." },
-      features: [
-        { title:"15+ Years Exp.", desc:"Since 2008" },
-        { title:"1000+ Products", desc:"Carefully selected" },
-        { title:"Family Owned", desc:"With passion" }
-      ],
-      products: { title:"Products & Specialties" },
-      recipes: { title:"Our Favorite Recipes" },
-      gallery: { title:"Market Gallery", viewLabel:"View" },
-      reviews: { title:"Customer Reviews" },
-      faq: { title:"FAQ" },
-      contact: {
-        title:"Visit Us", hours:"Opening Hours",
-        moFr:"Mon – Fri: 9am – 8pm", sa:"Sat: 9am – 6pm", so:"Sun: Closed",
-        address:"Address", addressText:"Trierer Str. 16, 66111 Saarbrücken",
-        phone:"Phone", email:"Email", social:"Follow Us"
-      },
-      footer: { tagline:"Your destination for authentic Asian cuisine.", impressum:"Imprint", privacy:"Privacy", copyright:`© ${new Date().getFullYear()} Asia Market Saarbrücken. All rights reserved.` },
-      cookie: { text:"This website uses Google Fonts and Google Maps. By using it you agree to the processing.", accept:"Got it" },
-      recipeLabels: { ing:"Ingredients", steps:"Preparation" },
-      productList: [
-        { name:"Japanese Snacks", desc:"Sweet & salty", ex:["Pocky","Matcha KitKat"], img:"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=500&auto=format&fit=crop&q=70" },
-        { name:"Korean Noodles", desc:"Spicy", ex:["Shin Ramyun","Buldak"], img:"https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=500&auto=format&fit=crop&q=70" },
-        { name:"Thai Spices", desc:"Aromatic", ex:["Kaffir Lime","Galangal"], img:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=500&auto=format&fit=crop&q=70" },
-        { name:"Chinese Sauces", desc:"Wok base", ex:["Hoisin","Oyster Sauce"], img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?w=500&auto=format&fit=crop&q=70" },
-        { name:"Fresh Veggies", desc:"Weekly", ex:["Pak Choi","Bamboo"], img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&auto=format&fit=crop&q=70" },
-        { name:"Frozen Foods", desc:"Authentic", ex:["Gyoza","Dim Sum"], img:"https://images.unsplash.com/photo-1534482421-64566f976cfa?w=500&auto=format&fit=crop&q=70" },
-        { name:"Bubble Tea", desc:"Refreshing", ex:["Taro","Matcha"], img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format&fit=crop&q=70" },
-        { name:"Mochi", desc:"Traditional", ex:["Daifuku","Taiyaki"], img:"https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=500&auto=format&fit=crop&q=70" }
-      ],
-      recipeItems: [
-        { title:"Tonkotsu Ramen", ing:"Noodles, pork broth, chashu", steps:"Heat broth, arrange toppings", img:"https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&auto=format&fit=crop&q=70" },
-        { title:"Fried Rice", ing:"Rice, egg, vegetables", steps:"Stir-fry, season", img:"https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&auto=format&fit=crop&q=70" },
-        { title:"Bibimbap", ing:"Rice, beef, gochujang", steps:"Arrange, mix", img:"https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=600&auto=format&fit=crop&q=70" },
-        { title:"Green Curry", ing:"Curry paste, coconut milk", steps:"Toast, simmer", img:"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&auto=format&fit=crop&q=70" },
-        { title:"Sushi Maki", ing:"Rice, nori, salmon", steps:"Roll, slice", img:"https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&auto=format&fit=crop&q=70" }
-      ],
-      reviewList: [
-        { name:"Maria S.", text:"Beautiful shop with a huge selection. Super friendly staff!", stars:5 },
-        { name:"Thomas K.", text:"Everything for my ramen nights. Fresh vegetables unmatched.", stars:5 },
-        { name:"Yuki T.", text:"A piece of home. Japanese snacks and mochi of excellent quality.", stars:5 },
-        { name:"Anna L.", text:"Best Asian shop in SB! Always fresh herbs and friendly advice.", stars:5 },
-        { name:"Michael R.", text:"Great selection of Korean products. Gochujang in every variety.", stars:4 },
-        { name:"Sofia W.", text:"Lovingly designed, great recipe ideas. Will definitely return.", stars:5 }
-      ],
-      faqList: [
-        { q:"Are there fresh products?", a:"Yes, we receive fresh vegetables and herbs twice a week directly from the wholesale market." },
-        { q:"Can I pre-order?", a:"Absolutely! We are happy to order special ingredients for you. Just call or stop by." },
-        { q:"What vegan options are available?", a:"We carry a wide selection of tofu, tempeh, vegan sauces and plant-based alternatives." }
-      ]
-    }
-  };
+    about: { title:"Unsere Geschichte", desc:"Wir sind seit 2008 Ihre erste Adresse für authentische asiatische Lebensmittel in Saarbrücken. Als familiengeführter Markt legen wir Wert auf Qualität, Beratung und eine persönliche Atmosphäre." },
+    features: [
+      { title:"15+ Jahre Erfahrung", desc:"Seit 2008" },
+      { title:"1000+ Produkte", desc:"Sorgfältig ausgewählt" },
+      { title:"Familienbetrieb", desc:"Mit Leidenschaft" }
+    ],
+    /* BUG FIX 5: stats-Suffix wird separat gesetzt damit data-key in HTML erhalten bleibt */
+    stats: { years:"Jahre Erfahrung", products:"Produkte", regions:"Asiatische Regionen", delivery:"Frische Lieferung" },
+    statsConfig: [
+      { target:15, suffix:"+" },
+      { target:1000, suffix:"+" },
+      { target:5, suffix:" Küchen" },
+      { target:2, suffix:"x/Wo" }
+    ],
+    products: { title:"Produkte & Spezialitäten" },
+    recipes: { title:"Unsere Lieblingsrezepte" },
+    gallery: { title:"Einblick in unseren Markt", viewLabel:"Ansehen" },
+    reviews: { title:"Was unsere Kunden sagen" },
+    faq: { title:"Häufig gestellte Fragen" },
+    contact: {
+      title:"Besuchen Sie uns", hours:"Öffnungszeiten",
+      moFr:"Mo – Fr: 09:00 – 20:00", sa:"Sa: 09:00 – 18:00", so:"So: Geschlossen",
+      address:"Adresse", addressText:"Trierer Str. 16, 66111 Saarbrücken",
+      phone:"Telefon", email:"E-Mail", social:"Folgen Sie uns"
+    },
+    footer: { tagline:"Ihre Adresse für authentische asiatische Küche.", impressum:"Impressum", privacy:"Datenschutz", copyright:`© ${new Date().getFullYear()} Asia Market Saarbrücken. Alle Rechte vorbehalten.` },
+    cookie: { text:"Diese Website verwendet Google Fonts und Google Maps. Mit der Nutzung stimmen Sie der Verarbeitung zu.", accept:"Verstanden" },
+    recipeLabels: { ing:"Zutaten", steps:"Zubereitung" },
+    productList: [
+      { name:"Japanische Snacks", desc:"Süß & salzig", ex:["Pocky","Matcha KitKat"], img:"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=500&auto=format&fit=crop&q=70" },
+      { name:"Korean Nudeln", desc:"Würzig", ex:["Shin Ramyun","Buldak"], img:"https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=500&auto=format&fit=crop&q=70" },
+      { name:"Thai Gewürze", desc:"Aromatisch", ex:["Kaffirblätter","Galangal"], img:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=500&auto=format&fit=crop&q=70" },
+      { name:"Chinesische Saucen", desc:"Wok-Basis", ex:["Hoisin","Austernsauce"], img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?w=500&auto=format&fit=crop&q=70" },
+      { name:"Frisches Gemüse", desc:"Wöchentlich", ex:["Pak Choi","Bambus"], img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&auto=format&fit=crop&q=70" },
+      { name:"Tiefkühlprodukte", desc:"Authentisch", ex:["Gyoza","Dim Sum"], img:"https://images.unsplash.com/photo-1534482421-64566f976cfa?w=500&auto=format&fit=crop&q=70" },
+      { name:"Bubble Tea", desc:"Erfrischend", ex:["Taro","Matcha"], img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format&fit=crop&q=70" },
+      { name:"Mochi", desc:"Traditionell", ex:["Daifuku","Taiyaki"], img:"https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=500&auto=format&fit=crop&q=70" }
+    ],
+    recipeItems: [
+      { title:"Tonkotsu Ramen", ing:"Nudeln, Schweinebrühe, Chashu", steps:"Brühe erhitzen, Toppings anrichten", img:"https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&auto=format&fit=crop&q=70" },
+      { title:"Fried Rice", ing:"Reis, Ei, Gemüse", steps:"Anbraten, würzen", img:"https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&auto=format&fit=crop&q=70" },
+      { title:"Bibimbap", ing:"Reis, Rind, Gochujang", steps:"Anrichten, mischen", img:"https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=600&auto=format&fit=crop&q=70" },
+      { title:"Green Curry", ing:"Currypaste, Kokosmilch", steps:"Anrösten, köcheln", img:"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&auto=format&fit=crop&q=70" },
+      { title:"Sushi Maki", ing:"Reis, Nori, Lachs", steps:"Rollen, schneiden", img:"https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&auto=format&fit=crop&q=70" }
+    ],
+    reviewList: [
+      { name:"Maria S.", text:"Wunderschöner Laden mit riesiger Auswahl. Personal super freundlich!", stars:5 },
+      { name:"Thomas K.", text:"Alles für meine Ramen-Abende. Frisches Gemüse und Saucen unübertroffen.", stars:5 },
+      { name:"Yuki T.", text:"Ein Stück Heimat. Japanische Snacks und Mochi in bester Qualität.", stars:5 },
+      { name:"Anna L.", text:"Bester Asia-Shop in SB! Immer frische Kräuter und freundliche Beratung.", stars:5 },
+      { name:"Michael R.", text:"Große Auswahl an koreanischen Produkten. Gochujang in jeder Variante.", stars:4 },
+      { name:"Sofia W.", text:"Liebevoll eingerichtet, tolle Rezeptideen. Komme gerne wieder.", stars:5 }
+    ],
+    faqList: [
+      { q:"Gibt es frische Produkte?", a:"Ja, wir erhalten zweimal wöchentlich frisches Gemüse und Kräuter direkt vom Großmarkt." },
+      { q:"Ist eine Vorbestellung möglich?", a:"Selbstverständlich! Wir bestellen spezielle Zutaten gerne für Sie vor. Einfach anrufen oder vorbeikommen." },
+      { q:"Welche veganen Optionen gibt es?", a:"Wir führen eine große Auswahl an Tofu, Tempeh, veganen Saucen und pflanzlichen Alternativen." }
+    ]
+  },
+  en: {
+    nav: { about:"About Us", products:"Products", recipes:"Recipes", gallery:"Gallery", contact:"Contact" },
+    hero: {
+      notice:"Info only – no online sales",
+      titlePre:"The ", titleShimmer:"Essence", titlePost:" of Asia in Saarbrücken",
+      subtitle:"Step into a world of flavors. Authentic spices, fresh ingredients and Asian specialties.",
+      cta1:"Discover Products", cta2:"Visit Us"
+    },
+    about: { title:"Our Story", desc:"Since 2008, your premier destination for authentic Asian groceries in Saarbrücken. As a family-run market we value quality, personal advice and a welcoming atmosphere." },
+    features: [
+      { title:"15+ Years Exp.", desc:"Since 2008" },
+      { title:"1000+ Products", desc:"Carefully selected" },
+      { title:"Family Owned", desc:"With passion" }
+    ],
+    stats: { years:"Years Experience", products:"Products", regions:"Asian Regions", delivery:"Fresh Delivery" },
+    statsConfig: [
+      { target:15, suffix:"+" },
+      { target:1000, suffix:"+" },
+      { target:5, suffix:" Cuisines" },
+      { target:2, suffix:"x/Week" }
+    ],
+    products: { title:"Products & Specialties" },
+    recipes: { title:"Our Favorite Recipes" },
+    gallery: { title:"Market Gallery", viewLabel:"View" },
+    reviews: { title:"Customer Reviews" },
+    faq: { title:"FAQ" },
+    contact: {
+      title:"Visit Us", hours:"Opening Hours",
+      moFr:"Mon – Fri: 9am – 8pm", sa:"Sat: 9am – 6pm", so:"Sun: Closed",
+      address:"Address", addressText:"Trierer Str. 16, 66111 Saarbrücken",
+      phone:"Phone", email:"Email", social:"Follow Us"
+    },
+    footer: { tagline:"Your destination for authentic Asian cuisine.", impressum:"Imprint", privacy:"Privacy", copyright:`© ${new Date().getFullYear()} Asia Market Saarbrücken. All rights reserved.` },
+    cookie: { text:"This website uses Google Fonts and Google Maps. By using it you agree to the processing.", accept:"Got it" },
+    recipeLabels: { ing:"Ingredients", steps:"Preparation" },
+    productList: [
+      { name:"Japanese Snacks", desc:"Sweet & salty", ex:["Pocky","Matcha KitKat"], img:"https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=500&auto=format&fit=crop&q=70" },
+      { name:"Korean Noodles", desc:"Spicy", ex:["Shin Ramyun","Buldak"], img:"https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=500&auto=format&fit=crop&q=70" },
+      { name:"Thai Spices", desc:"Aromatic", ex:["Kaffir Lime","Galangal"], img:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=500&auto=format&fit=crop&q=70" },
+      { name:"Chinese Sauces", desc:"Wok base", ex:["Hoisin","Oyster Sauce"], img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?w=500&auto=format&fit=crop&q=70" },
+      { name:"Fresh Veggies", desc:"Weekly", ex:["Pak Choi","Bamboo"], img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=500&auto=format&fit=crop&q=70" },
+      { name:"Frozen Foods", desc:"Authentic", ex:["Gyoza","Dim Sum"], img:"https://images.unsplash.com/photo-1534482421-64566f976cfa?w=500&auto=format&fit=crop&q=70" },
+      { name:"Bubble Tea", desc:"Refreshing", ex:["Taro","Matcha"], img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&auto=format&fit=crop&q=70" },
+      { name:"Mochi", desc:"Traditional", ex:["Daifuku","Taiyaki"], img:"https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=500&auto=format&fit=crop&q=70" }
+    ],
+    recipeItems: [
+      { title:"Tonkotsu Ramen", ing:"Noodles, pork broth, chashu", steps:"Heat broth, arrange toppings", img:"https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&auto=format&fit=crop&q=70" },
+      { title:"Fried Rice", ing:"Rice, egg, vegetables", steps:"Stir-fry, season", img:"https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600&auto=format&fit=crop&q=70" },
+      { title:"Bibimbap", ing:"Rice, beef, gochujang", steps:"Arrange, mix", img:"https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=600&auto=format&fit=crop&q=70" },
+      { title:"Green Curry", ing:"Curry paste, coconut milk", steps:"Toast, simmer", img:"https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&auto=format&fit=crop&q=70" },
+      { title:"Sushi Maki", ing:"Rice, nori, salmon", steps:"Roll, slice", img:"https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&auto=format&fit=crop&q=70" }
+    ],
+    reviewList: [
+      { name:"Maria S.", text:"Beautiful shop with a huge selection. Super friendly staff!", stars:5 },
+      { name:"Thomas K.", text:"Everything for my ramen nights. Fresh vegetables unmatched.", stars:5 },
+      { name:"Yuki T.", text:"A piece of home. Japanese snacks and mochi of excellent quality.", stars:5 },
+      { name:"Anna L.", text:"Best Asian shop in SB! Always fresh herbs and friendly advice.", stars:5 },
+      { name:"Michael R.", text:"Great selection of Korean products. Gochujang in every variety.", stars:4 },
+      { name:"Sofia W.", text:"Lovingly designed, great recipe ideas. Will definitely return.", stars:5 }
+    ],
+    faqList: [
+      { q:"Are there fresh products?", a:"Yes, we receive fresh vegetables and herbs twice a week directly from the wholesale market." },
+      { q:"Can I pre-order?", a:"Absolutely! We are happy to order special ingredients for you. Just call or stop by." },
+      { q:"What vegan options are available?", a:"We carry a wide selection of tofu, tempeh, vegan sauces and plant-based alternatives." }
+    ]
+  }
+};
 
-  let currentLang = 'de';
+let currentLang = 'de';
+let fadeObserver = null;
+let staggerObserver = null;
+let counterObserver = null;
+let dividerObserver = null;
+/* BUG FIX 5: statsAnimated wird beim Sprachwechsel NICHT resettet – Counter läuft nur einmal */
+let statsAnimated = false;
 
-  // BUG FIX: IntersectionObserver defined before use, with unobserve to avoid duplicate triggers
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        fadeObserver.unobserve(entry.target); // stop watching once visible
+/* ─── PAGE LOADER ─────────────────────────── */
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('page-loader').classList.add('hidden'), 1300);
+});
+
+/* ─── HERO PARTICLES ──────────────────────── */
+function createParticles() {
+  const container = document.getElementById('heroParticles');
+  if (!container) return;
+  const count = window.innerWidth < 768 ? 12 : 22;
+  container.innerHTML = '';
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 4 + 2;
+    p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;--dur:${6+Math.random()*10}s;--delay:${Math.random()*8}s;`;
+    container.appendChild(p);
+  }
+}
+
+/* ─── OBSERVERS ───────────────────────────── */
+function initFadeObserver() {
+  if (fadeObserver) fadeObserver.disconnect();
+  fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -20px 0px" });
+  document.querySelectorAll('.fade-up, .fade-left, .fade-right').forEach(el => {
+    if (!el.classList.contains('visible')) fadeObserver.observe(el);
+  });
+}
+
+/* BUG FIX 4: galleryGrid in staggerObserver aufgenommen */
+function initStaggerObserver() {
+  if (staggerObserver) staggerObserver.disconnect();
+  staggerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.stagger-child').forEach((child, i) => {
+          setTimeout(() => child.classList.add('visible'), i * 90);
+        });
+        staggerObserver.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.08 });
+  ['productsGrid','recipesGrid','reviewsGrid','galleryGrid'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) staggerObserver.observe(el);
+  });
+}
 
-  function observeFadeElements() {
+/* BUG FIX 2: dividerObserver setzt .visible direkt auf .divider-anim */
+function initDividerObserver() {
+  if (dividerObserver) dividerObserver.disconnect();
+  dividerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); dividerObserver.unobserve(e.target); }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.divider-anim').forEach(el => {
+    if (!el.classList.contains('visible')) dividerObserver.observe(el);
+  });
+}
+
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const totalMs = 1800, step = 16;
+  let current = 0;
+  const increment = target / (totalMs / step);
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) { current = target; clearInterval(timer); }
+    el.textContent = Math.floor(current) + suffix;
+  }, step);
+}
+
+function initCounterObserver() {
+  if (counterObserver) counterObserver.disconnect();
+  counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !statsAnimated) {
+        statsAnimated = true;
+        document.querySelectorAll('.stat-num[data-target]').forEach(animateCounter);
+        counterObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+  const strip = document.querySelector('.stats-strip');
+  if (strip) counterObserver.observe(strip);
+}
+
+function observeFadeElements() {
+  if (fadeObserver) {
     document.querySelectorAll('.fade-up, .fade-left, .fade-right').forEach(el => {
       if (!el.classList.contains('visible')) fadeObserver.observe(el);
     });
-  }
+  } else { initFadeObserver(); }
+}
 
-  function renderFeatures() {
-    const t = translations[currentLang];
-    document.getElementById('featuresContainer').innerHTML = t.features.map(f =>
-      `<div class="feature"><h3>${f.title}</h3><p>${f.desc}</p></div>`
-    ).join('');
-  }
+/* ─── RENDER FUNCTIONS ────────────────────── */
 
-  function renderProducts() {
-    const t = translations[currentLang];
-    document.getElementById('productsGrid').innerHTML = t.productList.map(p =>
-      `<div class="product-card">
-        <div class="product-img"><img src="${p.img}" loading="lazy" alt="${p.name} – asiatische Spezialität"></div>
-        <div class="product-body">
-          <h3>${p.name}</h3>
-          <p>${p.desc}</p>
+/* BUG FIX 1: Hero-Titel per innerHTML mit shimmer-word span; kein data-key auf h1 */
+function renderHeroTitle() {
+  const t = translations[currentLang].hero;
+  document.getElementById('heroTitle').innerHTML =
+    `${t.titlePre}<span class="shimmer-word">${t.titleShimmer}</span>${t.titlePost}`;
+  document.getElementById('heroCta1').textContent = t.cta1;
+  document.getElementById('heroCta2').textContent = t.cta2;
+}
+
+function renderFeatures() {
+  const t = translations[currentLang];
+  document.getElementById('featuresContainer').innerHTML =
+    t.features.map(f => `<div class="feature"><h3>${f.title}</h3><p>${f.desc}</p></div>`).join('');
+}
+
+/* BUG FIX 5: Stats-Suffix nach Sprachwechsel korrekt aktualisieren */
+function renderStats() {
+  const t = translations[currentLang];
+  const nums = document.querySelectorAll('.stat-num[data-target]');
+  nums.forEach((el, i) => {
+    const cfg = t.statsConfig[i];
+    if (!cfg) return;
+    el.dataset.suffix = cfg.suffix;
+    /* Wenn Counter bereits animiert wurde, zeige direkt den Endwert */
+    if (statsAnimated) el.textContent = cfg.target + cfg.suffix;
+    else el.textContent = '0';
+  });
+}
+
+function renderProducts() {
+  const t = translations[currentLang];
+  document.getElementById('productsGrid').innerHTML =
+    t.productList.map(p => `
+      <div class="product-card stagger-child">
+        <div class="product-img"><img src="${p.img}" loading="lazy" alt="${p.name}"></div>
+        <div class="product-body"><h3>${p.name}</h3><p>${p.desc}</p>
           <ul>${p.ex.map(e => `<li>${e}</li>`).join('')}</ul>
         </div>
-      </div>`
-    ).join('');
-  }
+      </div>`).join('');
+}
 
-  function renderRecipes() {
-    const t = translations[currentLang];
-    document.getElementById('recipesGrid').innerHTML = t.recipeItems.map(r =>
-      `<div class="recipe-card">
-        <div class="recipe-img"><img src="${r.img}" loading="lazy" alt="${r.title} Rezept"></div>
-        <div class="recipe-body">
-          <h3>${r.title}</h3>
+function renderRecipes() {
+  const t = translations[currentLang];
+  document.getElementById('recipesGrid').innerHTML =
+    t.recipeItems.map(r => `
+      <div class="recipe-card stagger-child">
+        <div class="recipe-img"><img src="${r.img}" loading="lazy" alt="${r.title}"></div>
+        <div class="recipe-body"><h3>${r.title}</h3>
           <span class="recipe-label">${t.recipeLabels.ing}</span><p>${r.ing}</p>
           <span class="recipe-label">${t.recipeLabels.steps}</span><p>${r.steps}</p>
         </div>
-      </div>`
-    ).join('');
-  }
+      </div>`).join('');
+}
 
-  function renderReviews() {
-    const t = translations[currentLang];
-    document.getElementById('reviewsGrid').innerHTML = t.reviewList.map(r =>
-      `<div class="review-card">
+function renderReviews() {
+  const t = translations[currentLang];
+  document.getElementById('reviewsGrid').innerHTML =
+    t.reviewList.map(r => `
+      <div class="review-card stagger-child">
         <div class="review-quote">"</div>
-        <div class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}</div>
+        <div class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
         <p class="review-text">"${r.text}"</p>
         <div class="review-name">${r.name}</div>
-      </div>`
-    ).join('');
-  }
+      </div>`).join('');
+}
 
-  function renderFAQ() {
-    const t = translations[currentLang];
-    document.getElementById('faqList').innerHTML = t.faqList.map((f, i) =>
-      `<div class="faq-item" id="faq-${i}">
+function renderFAQ() {
+  const t = translations[currentLang];
+  document.getElementById('faqList').innerHTML =
+    t.faqList.map((f,i) => `
+      <div class="faq-item fade-up" id="faq-${i}">
         <button class="faq-q" onclick="toggleFAQ(${i})" aria-expanded="false" aria-controls="faq-answer-${i}">
           ${f.q}<span class="faq-chevron" aria-hidden="true">▾</span>
         </button>
         <div class="faq-a" id="faq-answer-${i}" role="region">${f.a}</div>
-      </div>`
-    ).join('');
-  }
+      </div>`).join('');
+}
 
-  function renderGallery() {
-    const t = translations[currentLang];
-    const imgs = [
-      "https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=70",
-      "https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&auto=format&fit=crop&q=70",
-      "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600&auto=format&fit=crop&q=70",
-      "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&auto=format&fit=crop&q=70",
-      "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=70",
-      "https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&auto=format&fit=crop&q=70",
-      "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&auto=format&fit=crop&q=70",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop&q=70"
-    ];
-    const altTexts = [
-      "Innenansicht des Asia Markets", "Frische asiatische Zutaten",
-      "Japanische Snacks Auswahl", "Asiatische Gewürze",
-      "Chinesische Saucen", "Sushi-Zubereitung",
-      "Frisches Gemüse", "Bubble Tea Auswahl"
-    ];
-    document.getElementById('galleryGrid').innerHTML = imgs.map((src, i) =>
-      `<div class="gallery-item">
+function renderGallery() {
+  const t = translations[currentLang];
+  const imgs = [
+    "https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=70",
+    "https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&auto=format&fit=crop&q=70",
+    "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600&auto=format&fit=crop&q=70",
+    "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&auto=format&fit=crop&q=70",
+    "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&auto=format&fit=crop&q=70",
+    "https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=600&auto=format&fit=crop&q=70",
+    "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&auto=format&fit=crop&q=70",
+    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop&q=70"
+  ];
+  const alts = ["Innenansicht","Frische Zutaten","Japanische Snacks","Asiatische Gewürze","Chinesische Saucen","Sushi","Frisches Gemüse","Bubble Tea"];
+  document.getElementById('galleryGrid').innerHTML =
+    imgs.map((src,i) => `
+      <div class="gallery-item stagger-child">
         <div class="gallery-overlay"><span>${t.gallery.viewLabel}</span></div>
-        <img src="${src}" loading="lazy" alt="${altTexts[i]}">
-      </div>`
-    ).join('');
-  }
+        <img src="${src}" loading="lazy" alt="${alts[i]}">
+      </div>`).join('');
+}
 
-  // BUG FIX: renderContact no longer calls scrollToSection (caused unwanted scroll on language switch)
-  function renderContact() {
-    const t = translations[currentLang];
-    document.getElementById('contactGrid').innerHTML = `
-      <div class="fade-left">
-        <div class="contact-block">
-          <div class="contact-head">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <h3>${t.contact.hours}</h3>
-          </div>
-          <div class="contact-body"><p>${t.contact.moFr}</p><p>${t.contact.sa}</p><p>${t.contact.so}</p></div>
-        </div>
-        <div class="contact-block">
-          <div class="contact-head">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <h3>${t.contact.address}</h3>
-          </div>
-          <div class="contact-body">${t.contact.addressText}</div>
-        </div>
-        <div class="contact-block">
-          <div class="contact-head">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.64 19.79 19.79 0 01.18 1 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
-            <h3>${t.contact.phone}</h3>
-          </div>
-          <div class="contact-body">+49 681 123456</div>
-        </div>
-        <div class="contact-block">
-          <div class="contact-head">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <h3>${t.contact.email}</h3>
-          </div>
-          <div class="contact-body">info@asiamarket-sb.de</div>
-        </div>
-        <div class="contact-block">
-          <div class="contact-head">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2H7a5 5 0 00-5 5v10a5 5 0 005 5h10a5 5 0 005-5V7a5 5 0 00-5-5z"/><circle cx="12" cy="12" r="3"/></svg>
-            <h3>${t.contact.social}</h3>
-          </div>
-          <div class="social-links">
-            <a href="#" aria-label="Facebook">f</a>
-            <a href="#" aria-label="Instagram">in</a>
-            <a href="#" aria-label="WhatsApp">W</a>
-          </div>
+function renderContact() {
+  const t = translations[currentLang];
+  document.getElementById('contactGrid').innerHTML = `
+    <div class="fade-left">
+      <div class="contact-block">
+        <div class="contact-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><h3>${t.contact.hours}</h3></div>
+        <div class="contact-body"><p>${t.contact.moFr}</p><p>${t.contact.sa}</p><p>${t.contact.so}</p></div>
+      </div>
+      <div class="contact-block">
+        <div class="contact-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><h3>${t.contact.address}</h3></div>
+        <div class="contact-body">${t.contact.addressText}</div>
+      </div>
+      <div class="contact-block">
+        <div class="contact-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.64 19.79 19.79 0 01.18 1 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg><h3>${t.contact.phone}</h3></div>
+        <div class="contact-body">+49 681 123456</div>
+      </div>
+      <div class="contact-block">
+        <div class="contact-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><h3>${t.contact.email}</h3></div>
+        <div class="contact-body">info@asiamarket-sb.de</div>
+      </div>
+      <div class="contact-block">
+        <div class="contact-head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2H7a5 5 0 00-5 5v10a5 5 0 005 5h10a5 5 0 005-5V7a5 5 0 00-5-5z"/><circle cx="12" cy="12" r="3"/></svg><h3>${t.contact.social}</h3></div>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">in</a>
+          <a href="#" aria-label="WhatsApp">W</a>
         </div>
       </div>
-      <div class="fade-right">
-        <div class="map-wrap">
-          <div class="map-header">
-            <div class="map-dot"></div>
-            <span class="map-title">Asia Market Saarbrücken</span>
-            <span class="map-address">Trierer Str. 16, 66111 SB</span>
-          </div>
-          <div class="map-iframe-wrap">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2616.271288835554!2d6.985390715558659!3d49.23963457939356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4795b6ab9152a77d%3A0xed04bc76aa80b37e!2sTrierer%20Str.%2016%2C%2066111%20Saarbr%C3%BCcken!5e0!3m2!1sde!2sde!4v1717699999999!5m2!1sde!2sde" allowfullscreen loading="lazy" title="Asia Market Saarbrücken auf Google Maps"></iframe>
-          </div>
-          <div class="map-footer">
-            <span>Trierer Straße 16 · 66111 Saarbrücken</span>
-            <a href="https://www.google.com/maps/place/Trierer+Str.+16,+66111+Saarbr%C3%BCcken/" class="map-link" target="_blank" rel="noopener noreferrer">Route planen ↗</a>
-          </div>
-        </div>
-      </div>`;
-  }
+    </div>
+    <div class="fade-right">
+      <div class="map-wrap">
+        <div class="map-header"><div class="map-dot"></div><span class="map-title">Asia Market Saarbrücken</span><span class="map-address">Trierer Str. 16, 66111 SB</span></div>
+        <div class="map-iframe-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2616.271288835554!2d6.985390715558659!3d49.23963457939356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4795b6ab9152a77d%3A0xed04bc76aa80b37e!2sTrierer%20Str.%2016%2C%2066111%20Saarbr%C3%BCcken!5e0!3m2!1sde!2sde!4v1717699999999!5m2!1sde!2sde" allowfullscreen loading="lazy" title="Asia Market Saarbrücken auf Google Maps"></iframe></div>
+        <div class="map-footer"><span>Trierer Straße 16 · 66111 Saarbrücken</span><a href="https://www.google.com/maps/place/Trierer+Str.+16,+66111+Saarbr%C3%BCcken/" class="map-link" target="_blank" rel="noopener noreferrer">Route planen ↗</a></div>
+      </div>
+    </div>`;
+}
 
-  function toggleFAQ(i) {
-    const item = document.getElementById(`faq-${i}`);
-    const btn = item.querySelector('.faq-q');
-    const isOpen = item.classList.toggle('open');
-    btn.setAttribute('aria-expanded', String(isOpen));
-  }
+/* ─── FAQ ─────────────────────────────────── */
+function toggleFAQ(i) {
+  const item = document.getElementById(`faq-${i}`);
+  const isOpen = item.classList.toggle('open');
+  item.querySelector('.faq-q').setAttribute('aria-expanded', String(isOpen));
+}
 
-  function scrollToSection(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const navbar = document.getElementById('navbar');
-    const navH = navbar ? navbar.offsetHeight : 0;
-    const top = el.getBoundingClientRect().top + window.scrollY - navH - 8;
-    window.scrollTo({ top, behavior: 'smooth' });
-  }
+/* ─── SCROLL ──────────────────────────────── */
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - document.getElementById('navbar').offsetHeight - 8;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
 
-  // BUG FIX: showLegal scrolls to the correct container element directly
-  function showLegal(sectionId) {
-    document.getElementById('impressum').style.display = 'none';
-    document.getElementById('datenschutz').style.display = 'none';
-    const target = document.getElementById(sectionId);
-    if (target) {
-      target.style.display = 'block';
-      setTimeout(() => scrollToSection(sectionId), 50);
-    }
-  }
+/* ─── LEGAL ───────────────────────────────── */
+function showLegal(sectionId) {
+  ['impressum','datenschutz'].forEach(id => document.getElementById(id).style.display = 'none');
+  const t = document.getElementById(sectionId);
+  if (t) { t.style.display = 'block'; setTimeout(() => scrollToSection(sectionId), 50); }
+}
 
-  function initCookieBanner() {
-    const banner = document.getElementById('cookieBanner');
-    if (localStorage.getItem('cookieAccepted') === 'true') {
-      banner.style.display = 'none';
-      return;
-    }
-    banner.style.display = 'flex';
-    document.getElementById('cookieAcceptBtn').addEventListener('click', () => {
-      localStorage.setItem('cookieAccepted', 'true');
-      banner.style.display = 'none';
-    });
-  }
-
-  function applyLanguage() {
-    const t = translations[currentLang];
-    document.documentElement.lang = currentLang;
-    document.querySelectorAll('[data-key]').forEach(el => {
-      const key = el.dataset.key;
-      const val = key.split('.').reduce((o, i) => o?.[i], t);
-      if (val !== undefined) el.textContent = val;
-    });
-    document.getElementById('langToggle').textContent = currentLang === 'de' ? 'EN' : 'DE';
-    renderFeatures();
-    renderProducts();
-    renderRecipes();
-    renderReviews();
-    renderFAQ();
-    renderContact();
-    renderGallery();
-    // BUG FIX: re-observe newly rendered fade elements after DOM update
-    requestAnimationFrame(() => observeFadeElements());
-  }
-
-  function openMobileMenu() {
-    document.getElementById('mobileMenu').classList.add('open');
-    document.getElementById('mobileOverlay').classList.add('open');
-    document.getElementById('burgerBtn').classList.add('open');
-    document.getElementById('burgerBtn').setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeMobileMenu() {
-    document.getElementById('mobileMenu').classList.remove('open');
-    document.getElementById('mobileOverlay').classList.remove('open');
-    document.getElementById('burgerBtn').classList.remove('open');
-    document.getElementById('burgerBtn').setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  }
-
-  // Nav section highlighting
-  const sections = document.querySelectorAll('section[id]');
-  const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const id = e.target.id;
-        document.querySelectorAll('.nav-links button, #mobileMenu nav button').forEach(btn => {
-          const oc = btn.getAttribute('onclick') || '';
-          btn.style.color = oc.includes(`'${id}'`) ? 'var(--secondary)' : '';
-        });
-      }
-    });
-  }, { threshold: 0.4 });
-  sections.forEach(s => navObserver.observe(s));
-
-  // Expose globals
-  window.toggleLang = () => { currentLang = currentLang === 'de' ? 'en' : 'de'; applyLanguage(); };
-  window.toggleFAQ = toggleFAQ;
-  window.scrollToSection = scrollToSection;
-  window.closeMobileMenu = closeMobileMenu;
-
-  // Event listeners
-  document.getElementById('impressumLink').addEventListener('click', e => { e.preventDefault(); showLegal('impressum'); });
-  document.getElementById('datenschutzLink').addEventListener('click', e => { e.preventDefault(); showLegal('datenschutz'); });
-  document.getElementById('burgerBtn').addEventListener('click', () => {
-    document.getElementById('mobileMenu').classList.contains('open') ? closeMobileMenu() : openMobileMenu();
+/* ─── COOKIE ──────────────────────────────── */
+function initCookieBanner() {
+  const banner = document.getElementById('cookieBanner');
+  if (localStorage.getItem('cookieAccepted') === 'true') { banner.style.display = 'none'; return; }
+  banner.style.display = 'flex';
+  document.getElementById('cookieAcceptBtn').addEventListener('click', () => {
+    localStorage.setItem('cookieAccepted', 'true');
+    banner.style.display = 'none';
   });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
+}
 
-  // Init
-  applyLanguage();
-  initCookieBanner();
+/* ─── LANG ────────────────────────────────── */
+function applyLanguage() {
+  const t = translations[currentLang];
+  document.documentElement.lang = currentLang;
 
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-  }, { passive: true });
+  /* Alle einfachen data-key Elemente aktualisieren */
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const val = el.dataset.key.split('.').reduce((o,k) => o?.[k], t);
+    if (val !== undefined) el.textContent = val;
+  });
+
+  document.getElementById('langToggle').textContent = currentLang === 'de' ? 'EN' : 'DE';
+
+  /* BUG FIX 1: Hero-Titel separat rendern (shimmer-word span bleibt erhalten) */
+  renderHeroTitle();
+
+  /* Alle Sektionen neu rendern */
+  renderFeatures();
+  renderStats();   /* BUG FIX 5 */
+  renderProducts();
+  renderRecipes();
+  renderReviews();
+  renderFAQ();
+  renderContact();
+  renderGallery();
+
+  setTimeout(() => {
+    observeFadeElements();
+    initStaggerObserver();   /* BUG FIX 4 */
+    initDividerObserver();   /* BUG FIX 2 */
+  }, 50);
+}
+
+/* ─── MOBILE MENU ─────────────────────────── */
+function openMobileMenu() {
+  document.getElementById('mobileMenu').classList.add('open');
+  document.getElementById('mobileOverlay').classList.add('open');
+  document.getElementById('burgerBtn').classList.add('open');
+  document.getElementById('burgerBtn').setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobileMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('mobileOverlay').classList.remove('open');
+  document.getElementById('burgerBtn').classList.remove('open');
+  document.getElementById('burgerBtn').setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+/* ─── SCROLL EVENTS ───────────────────────── */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+}, { passive: true });
+
+/* ─── NAV ACTIVE HIGHLIGHT ────────────────── */
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.nav-links button').forEach(btn => {
+        const active = (btn.getAttribute('onclick') || '').includes(`'${id}'`);
+        btn.classList.toggle('active', active);
+        btn.style.color = active ? 'var(--secondary)' : '';
+      });
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
+
+/* ─── GLOBALS ─────────────────────────────── */
+window.toggleLang = () => { currentLang = currentLang === 'de' ? 'en' : 'de'; applyLanguage(); };
+window.toggleFAQ = toggleFAQ;
+window.scrollToSection = scrollToSection;
+window.closeMobileMenu = closeMobileMenu;
+
+/* ─── EVENTS ──────────────────────────────── */
+document.getElementById('impressumLink').addEventListener('click', e => { e.preventDefault(); showLegal('impressum'); });
+document.getElementById('datenschutzLink').addEventListener('click', e => { e.preventDefault(); showLegal('datenschutz'); });
+document.getElementById('burgerBtn').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.contains('open') ? closeMobileMenu() : openMobileMenu();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
+
+/* ─── INIT ────────────────────────────────── */
+createParticles();
+initFadeObserver();
+initCounterObserver();
+applyLanguage();
+initCookieBanner();
 </script>
 </body>
 </html>
