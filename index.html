@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=yes">
-  <title>Asia Market Saarbrücken – Authentische asiatische Lebensmittel</title>
+  <title>Asia's 4 Season Markt Saarbrücken – Authentische asiatische Lebensmittel</title>
   <meta name="description" content="Ihre erste Adresse für authentische asiatische Lebensmittel in Saarbrücken. Frische Gewürze, Spezialitäten & Rezeptideen.">
   <meta name="robots" content="index, follow">
-  <meta name="author" content="Asia Market Saarbrücken">
+  <meta name="author" content="Asia's 4 Season Markt Saarbrücken">
   <meta name="geo.region" content="DE-SL">
   <meta name="geo.placename" content="Saarbrücken">
   <link rel="canonical" href="https://profitalaf-prog.github.io/asia-shop-update/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Asia Market Saarbrücken – Authentische asiatische Lebensmittel">
+  <meta property="og:title" content="Asia's 4 Season Markt Saarbrücken – Authentische asiatische Lebensmittel">
   <meta property="og:description" content="Ihre erste Adresse für authentische asiatische Lebensmittel in Saarbrücken. Frische Gewürze, Spezialitäten & Rezeptideen.">
   <meta property="og:url" content="https://profitalaf-prog.github.io/asia-shop-update/">
   <meta property="og:image" content="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&auto=format&fit=crop&q=80">
@@ -19,7 +19,7 @@
   <meta property="og:locale:alternate" content="en_GB">
   <meta property="og:locale:alternate" content="fr_FR">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Asia Market Saarbrücken">
+  <meta name="twitter:title" content="Asia's 4 Season Markt Saarbrücken">
   <meta name="twitter:description" content="Authentische asiatische Lebensmittel in Saarbrücken seit 2008.">
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&auto=format&fit=crop&q=80">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🥢%3C/text%3E%3C/svg%3E">
@@ -27,7 +27,7 @@
   {
     "@context": "https://schema.org",
     "@type": "GroceryStore",
-    "name": "Asia Market Saarbrücken",
+    "name": "Asia's 4 Season Markt Saarbrücken",
     "description": "Authentische asiatische Lebensmittel, Gewürze und Spezialitäten seit 2008.",
     "url": "https://profitalaf-prog.github.io/asia-shop-update/",
     "telephone": "+4968112345",
@@ -156,7 +156,6 @@
 
     .hero-content { position: relative; z-index: 2; text-align: center; max-width: 56rem; padding: 0 1.5rem; margin-top: 4rem; }
 
-    /* BUG FIX 1: hero-badge/sub behalten data-key, hero-title nutzt JS direkt (kein data-key) */
     .hero-badge { display: inline-block; background: rgba(200,140,60,0.12); border: 1px solid rgba(200,140,60,0.3); padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.75rem; text-transform: uppercase; color: hsl(40,33%,90%); margin-bottom: 1rem; opacity: 0; animation: fadeInUp 0.7s cubic-bezier(0.2,0.9,0.4,1.1) 0.2s forwards; }
     .hero-title { font-size: clamp(2.5rem,8vw,5.5rem); color: hsl(40,33%,98%); line-height: 1.1; margin-bottom: 0.75rem; opacity: 0; animation: fadeInUp 0.7s cubic-bezier(0.2,0.9,0.4,1.1) 0.4s forwards; }
     .hero-title .shimmer-word { display: inline-block; background: linear-gradient(90deg, hsl(40,33%,98%) 0%, hsl(33,80%,75%) 50%, hsl(40,33%,98%) 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: textShimmer 4s linear 1.5s infinite; }
@@ -181,7 +180,6 @@
     .divider { width: 4rem; height: 2px; background: var(--secondary); margin: 0 auto 1.2rem; }
     .divider-left { margin: 0 0 1.2rem 0; }
 
-    /* BUG FIX 2: divider-anim – nur eine klare Mechanik via JS .visible direkt auf Element */
     .divider-anim { width: 0; transition: width 0.8s ease; }
     .divider-anim.visible { width: 4rem !important; }
 
@@ -246,7 +244,6 @@
     .product-img img, .recipe-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s ease; will-change: transform; }
     .product-card:hover .product-img img, .recipe-card:hover .recipe-img img { transform: scale(1.08); }
 
-    /* card shimmer on hover */
     .product-card { position: relative; }
     .recipe-card { position: relative; }
     .product-card::before, .recipe-card::before {
@@ -272,7 +269,6 @@
     .review-name { font-weight: 700; color: var(--primary); font-size: 0.85rem; }
 
     /* ─── STATS STRIP ─────────────────────────────── */
-    /* BUG FIX 3: stripShimmer mit background-size statt background-position (funktioniert mit linear-gradient) */
     .stats-strip { background: var(--primary); padding: 2rem 0; overflow: hidden; position: relative; }
     .stats-strip::before {
       content: ''; position: absolute; inset: 0;
@@ -390,7 +386,7 @@
 
 <!-- PAGE LOADER -->
 <div id="page-loader">
-  <div class="loader-logo">🥢 Asia Market</div>
+  <div class="loader-logo">🥢 Asia's 4 Season Markt</div>
   <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
 </div>
 
@@ -399,7 +395,7 @@
 
 <nav id="navbar">
   <div class="container nav-inner">
-    <div class="logo" onclick="scrollToSection('hero')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')scrollToSection('hero')">Asia Market<span>Saarbrücken</span></div>
+    <div class="logo" onclick="scrollToSection('hero')" role="button" tabindex="0" onkeypress="if(event.key==='Enter')scrollToSection('hero')">Asia's 4 Season Markt<span>Saarbrücken</span></div>
     <div class="nav-links">
       <button onclick="scrollToSection('about')" data-key="nav.about">Über uns</button>
       <button onclick="scrollToSection('gallery')" data-key="nav.gallery">Galerie</button>
@@ -435,8 +431,6 @@
     <div class="hero-orb hero-orb-3"></div>
     <div class="hero-particles" id="heroParticles"></div>
     <div class="hero-content">
-      <!-- BUG FIX 1: hero-badge & hero-sub haben data-key; hero-title hat KEIN data-key
-           sondern wird per renderHeroTitle() neu gerendert, um den shimmer-word span zu erhalten -->
       <span class="hero-badge" data-key="hero.notice">Nur zur Information – kein Online-Verkauf</span>
       <h1 class="hero-title" id="heroTitle">Die <span class="shimmer-word">Essenz</span> Asiens in Saarbrücken</h1>
       <p class="hero-sub" data-key="hero.subtitle">Treten Sie ein in eine Welt voller Aromen. Authentische Gewürze, frische Zutaten und asiatische Spezialitäten.</p>
@@ -453,7 +447,7 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-img fade-left">
-          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&auto=format&fit=crop&q=80" alt="Innenansicht Asia Market Saarbrücken">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&auto=format&fit=crop&q=80" alt="Innenansicht Asia's 4 Season Markt Saarbrücken">
         </div>
         <div class="fade-right">
           <h2 data-key="about.title">Unsere Geschichte</h2>
@@ -496,7 +490,6 @@
         <h2 class="section-title" data-key="gallery.title">Einblick in unseren Markt</h2>
         <div class="divider divider-anim"></div>
       </div>
-      <!-- BUG FIX 4: galleryGrid wird jetzt auch vom staggerObserver beobachtet -->
       <div class="gallery-scroll" id="galleryGrid"></div>
     </div>
   </section>
@@ -560,7 +553,7 @@
     <div id="impressum" class="legal-section" style="display:none;">
       <h3>Impressum</h3>
       <address>
-        <strong>Asia Market Saarbrücken</strong><br>
+        <strong>Asia's 4 Season Markt Saarbrücken</strong><br>
         [Inhabername – Platzhalter]<br>
         Trierer Str. 16<br>
         66111 Saarbrücken
@@ -571,7 +564,7 @@
     </div>
     <div id="datenschutz" class="legal-section" style="display:none;">
       <h3>Datenschutzerklärung</h3>
-      <p><strong>Verantwortlicher:</strong> Asia Market Saarbrücken, Trierer Str. 16, 66111 Saarbrücken, info@asiamarket-sb.de</p>
+      <p><strong>Verantwortlicher:</strong> Asia's 4 Season Markt Saarbrücken, Trierer Str. 16, 66111 Saarbrücken, info@asiamarket-sb.de</p>
       <p><strong>Datenverarbeitung:</strong> Diese Website nutzt Google Fonts und Google Maps. Durch die Einbindung werden IP-Adressen an Google LLC (USA) übermittelt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.</p>
       <p>Es werden keine personenbezogenen Daten über Kontaktformulare erhoben.</p>
       <p><strong>Ihre Rechte:</strong> Auskunft, Löschung, Berichtigung, Einschränkung der Verarbeitung, Widerspruch. Kontakt: datenschutz@asiamarket-sb.de (Platzhalter).</p>
@@ -583,14 +576,14 @@
   <div class="container">
     <div class="footer-inner">
       <div>
-        <div class="footer-logo">Asia Market Saarbrücken</div>
+        <div class="footer-logo">Asia's 4 Season Markt Saarbrücken</div>
         <div data-key="footer.tagline">Ihre Adresse für authentische asiatische Küche.</div>
       </div>
       <div class="footer-links">
         <a href="#" id="impressumLink" data-key="footer.impressum">Impressum</a>
         <a href="#" id="datenschutzLink" data-key="footer.privacy">Datenschutz</a>
       </div>
-      <div class="footer-copy" data-key="footer.copyright">© 2024 Asia Market Saarbrücken. Alle Rechte vorbehalten.</div>
+      <div class="footer-copy" data-key="footer.copyright">© 2024 Asia's 4 Season Markt Saarbrücken. Alle Rechte vorbehalten.</div>
     </div>
   </div>
 </footer>
@@ -609,7 +602,6 @@ const translations = {
     nav: { about:"Über uns", products:"Produkte", recipes:"Rezepte", gallery:"Galerie", contact:"Kontakt" },
     hero: {
       notice:"Nur zur Information – kein Online-Verkauf",
-      /* BUG FIX 1: Titel wird aufgeteilt, damit shimmer-word erhalten bleibt */
       titlePre:"Die ", titleShimmer:"Essenz", titlePost:" Asiens in Saarbrücken",
       subtitle:"Treten Sie ein in eine Welt voller Aromen. Authentische Gewürze, frische Zutaten und asiatische Spezialitäten.",
       cta1:"Produkte entdecken", cta2:"Uns besuchen"
@@ -620,7 +612,6 @@ const translations = {
       { title:"1000+ Produkte", desc:"Sorgfältig ausgewählt" },
       { title:"Familienbetrieb", desc:"Mit Leidenschaft" }
     ],
-    /* BUG FIX 5: stats-Suffix wird separat gesetzt damit data-key in HTML erhalten bleibt */
     stats: { years:"Jahre Erfahrung", products:"Produkte", regions:"Asiatische Regionen", delivery:"Frische Lieferung" },
     statsConfig: [
       { target:15, suffix:"+" },
@@ -639,7 +630,7 @@ const translations = {
       address:"Adresse", addressText:"Trierer Str. 16, 66111 Saarbrücken",
       phone:"Telefon", email:"E-Mail", social:"Folgen Sie uns"
     },
-    footer: { tagline:"Ihre Adresse für authentische asiatische Küche.", impressum:"Impressum", privacy:"Datenschutz", copyright:`© ${new Date().getFullYear()} Asia Market Saarbrücken. Alle Rechte vorbehalten.` },
+    footer: { tagline:"Ihre Adresse für authentische asiatische Küche.", impressum:"Impressum", privacy:"Datenschutz", copyright:`© ${new Date().getFullYear()} Asia's 4 Season Markt Saarbrücken. Alle Rechte vorbehalten.` },
     cookie: { text:"Diese Website verwendet Google Fonts und Google Maps. Mit der Nutzung stimmen Sie der Verarbeitung zu.", accept:"Verstanden" },
     recipeLabels: { ing:"Zutaten", steps:"Zubereitung" },
     productList: [
@@ -663,7 +654,7 @@ const translations = {
       { name:"Maria S.", text:"Wunderschöner Laden mit riesiger Auswahl. Personal super freundlich!", stars:5 },
       { name:"Thomas K.", text:"Alles für meine Ramen-Abende. Frisches Gemüse und Saucen unübertroffen.", stars:5 },
       { name:"Yuki T.", text:"Ein Stück Heimat. Japanische Snacks und Mochi in bester Qualität.", stars:5 },
-      { name:"Anna L.", text:"Bester Asia-Shop in SB! Immer frische Kräuter und freundliche Beratung.", stars:5 },
+      { name:"Anna L.", text:"Bester Asia's 4 Season Markt in SB! Immer frische Kräuter und freundliche Beratung.", stars:5 },
       { name:"Michael R.", text:"Große Auswahl an koreanischen Produkten. Gochujang in jeder Variante.", stars:4 },
       { name:"Sofia W.", text:"Liebevoll eingerichtet, tolle Rezeptideen. Komme gerne wieder.", stars:5 }
     ],
@@ -705,7 +696,7 @@ const translations = {
       address:"Address", addressText:"Trierer Str. 16, 66111 Saarbrücken",
       phone:"Phone", email:"Email", social:"Follow Us"
     },
-    footer: { tagline:"Your destination for authentic Asian cuisine.", impressum:"Imprint", privacy:"Privacy", copyright:`© ${new Date().getFullYear()} Asia Market Saarbrücken. All rights reserved.` },
+    footer: { tagline:"Your destination for authentic Asian cuisine.", impressum:"Imprint", privacy:"Privacy", copyright:`© ${new Date().getFullYear()} Asia's 4 Season Markt Saarbrücken. All rights reserved.` },
     cookie: { text:"This website uses Google Fonts and Google Maps. By using it you agree to the processing.", accept:"Got it" },
     recipeLabels: { ing:"Ingredients", steps:"Preparation" },
     productList: [
@@ -771,7 +762,7 @@ const translations = {
       address:"Adresse", addressText:"Trierer Str. 16, 66111 Sarrebruck",
       phone:"Téléphone", email:"E-mail", social:"Suivez-nous"
     },
-    footer: { tagline:"Votre destination pour la cuisine asiatique authentique.", impressum:"Mentions légales", privacy:"Confidentialité", copyright:`© ${new Date().getFullYear()} Asia Market Sarrebruck. Tous droits réservés.` },
+    footer: { tagline:"Votre destination pour la cuisine asiatique authentique.", impressum:"Mentions légales", privacy:"Confidentialité", copyright:`© ${new Date().getFullYear()} Asia's 4 Season Markt Sarrebruck. Tous droits réservés.` },
     cookie: { text:"Ce site utilise Google Fonts et Google Maps. En l'utilisant, vous acceptez le traitement.", accept:"Compris" },
     recipeLabels: { ing:"Ingrédients", steps:"Préparation" },
     productList: [
@@ -812,7 +803,6 @@ let fadeObserver = null;
 let staggerObserver = null;
 let counterObserver = null;
 let dividerObserver = null;
-/* BUG FIX 5: statsAnimated wird beim Sprachwechsel NICHT resettet – Counter läuft nur einmal */
 let statsAnimated = false;
 
 /* ─── PAGE LOADER ─────────────────────────── */
@@ -848,7 +838,6 @@ function initFadeObserver() {
   });
 }
 
-/* BUG FIX 4: galleryGrid in staggerObserver aufgenommen */
 function initStaggerObserver() {
   if (staggerObserver) staggerObserver.disconnect();
   staggerObserver = new IntersectionObserver((entries) => {
@@ -867,7 +856,6 @@ function initStaggerObserver() {
   });
 }
 
-/* BUG FIX 2: dividerObserver setzt .visible direkt auf .divider-anim */
 function initDividerObserver() {
   if (dividerObserver) dividerObserver.disconnect();
   dividerObserver = new IntersectionObserver((entries) => {
@@ -918,7 +906,6 @@ function observeFadeElements() {
 
 /* ─── RENDER FUNCTIONS ────────────────────── */
 
-/* BUG FIX 1: Hero-Titel per innerHTML mit shimmer-word span; kein data-key auf h1 */
 function renderHeroTitle() {
   const t = translations[currentLang].hero;
   document.getElementById('heroTitle').innerHTML =
@@ -933,7 +920,6 @@ function renderFeatures() {
     t.features.map(f => `<div class="feature"><h3>${f.title}</h3><p>${f.desc}</p></div>`).join('');
 }
 
-/* BUG FIX 5: Stats-Suffix nach Sprachwechsel korrekt aktualisieren */
 function renderStats() {
   const t = translations[currentLang];
   const nums = document.querySelectorAll('.stat-num[data-target]');
@@ -941,7 +927,6 @@ function renderStats() {
     const cfg = t.statsConfig[i];
     if (!cfg) return;
     el.dataset.suffix = cfg.suffix;
-    /* Wenn Counter bereits animiert wurde, zeige direkt den Endwert */
     if (statsAnimated) el.textContent = cfg.target + cfg.suffix;
     else el.textContent = '0';
   });
@@ -1048,8 +1033,8 @@ function renderContact() {
     </div>
     <div class="fade-right">
       <div class="map-wrap">
-        <div class="map-header"><div class="map-dot"></div><span class="map-title">Asia Market Saarbrücken</span><span class="map-address">Trierer Str. 16, 66111 SB</span></div>
-        <div class="map-iframe-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2616.271288835554!2d6.985390715558659!3d49.23963457939356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4795b6ab9152a77d%3A0xed04bc76aa80b37e!2sTrierer%20Str.%2016%2C%2066111%20Saarbr%C3%BCcken!5e0!3m2!1sde!2sde!4v1717699999999!5m2!1sde!2sde" allowfullscreen loading="lazy" title="Asia Market Saarbrücken auf Google Maps"></iframe></div>
+        <div class="map-header"><div class="map-dot"></div><span class="map-title">Asia's 4 Season Markt Saarbrücken</span><span class="map-address">Trierer Str. 16, 66111 SB</span></div>
+        <div class="map-iframe-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2616.271288835554!2d6.985390715558659!3d49.23963457939356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4795b6ab9152a77d%3A0xed04bc76aa80b37e!2sTrierer%20Str.%2016%2C%2066111%20Saarbr%C3%BCcken!5e0!3m2!1sde!2sde!4v1717699999999!5m2!1sde!2sde" allowfullscreen loading="lazy" title="Asia's 4 Season Markt Saarbrücken auf Google Maps"></iframe></div>
         <div class="map-footer"><span>Trierer Straße 16 · 66111 Saarbrücken</span><a href="https://www.google.com/maps/place/Trierer+Str.+16,+66111+Saarbr%C3%BCcken/" class="map-link" target="_blank" rel="noopener noreferrer">Route planen ↗</a></div>
       </div>
     </div>`;
@@ -1093,7 +1078,6 @@ function applyLanguage() {
   const t = translations[currentLang];
   document.documentElement.lang = currentLang === 'en' ? 'en' : (currentLang === 'fr' ? 'fr' : 'de');
 
-  /* Alle einfachen data-key Elemente aktualisieren */
   document.querySelectorAll('[data-key]').forEach(el => {
     const val = el.dataset.key.split('.').reduce((o,k) => o?.[k], t);
     if (val !== undefined) el.textContent = val;
@@ -1101,12 +1085,9 @@ function applyLanguage() {
 
   document.getElementById('langToggle').textContent = currentLang.toUpperCase();
 
-  /* BUG FIX 1: Hero-Titel separat rendern (shimmer-word span bleibt erhalten) */
   renderHeroTitle();
-
-  /* Alle Sektionen neu rendern */
   renderFeatures();
-  renderStats();   /* BUG FIX 5 */
+  renderStats();
   renderProducts();
   renderRecipes();
   renderReviews();
@@ -1116,8 +1097,8 @@ function applyLanguage() {
 
   setTimeout(() => {
     observeFadeElements();
-    initStaggerObserver();   /* BUG FIX 4 */
-    initDividerObserver();   /* BUG FIX 2 */
+    initStaggerObserver();
+    initDividerObserver();
   }, 50);
 }
 
